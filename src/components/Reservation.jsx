@@ -1,15 +1,23 @@
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getVisit } from '../redux/action/visits'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { format } from 'date-fns'
+import ReservationModal from './ReservationModal'
 
 const Reservation = () => {
   const visitData = useSelector((state) => state.visit.list)
   const dispatch = useDispatch()
+  const [show, setShow] = useState(false)
+  const [selected, setSelected] = useState(null)
+
+  const handleShow = (id) => {
+    setSelected(id), setShow(true)
+  }
   useEffect(() => {
     dispatch(getVisit())
   }, [dispatch])
+
   return (
     <Container>
       <Row className="my-3">
@@ -39,12 +47,17 @@ const Reservation = () => {
               Posti disponibili: {visit.maxPeople}
             </Col>
             <Col sm={3} lg={3}>
-              <Button className="m-2" style={{ width: '100px' }}>
+              <Button
+                className="m-2"
+                style={{ width: '100px' }}
+                onClick={() => handleShow(visit.id)}
+              >
                 Prenota
               </Button>
             </Col>
           </Row>
         ))}
+      {selected && <ReservationModal visitId={selected} setShow={setShow} />}
     </Container>
   )
 }
