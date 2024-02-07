@@ -21,3 +21,24 @@ export const getBlogpost = () => {
     }
   }
 }
+
+export const getBlogDetail = (id) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch('http://localhost:3001/blogposts/detail/' + id)
+      if (res.ok) {
+        const data = await res.json()
+        console.log(data)
+        dispatch({
+          type: GET_BLOG_DETAIL,
+          payload: data,
+        })
+        console.log('Detail has been load correctly')
+      } else {
+        throw new Error('Detail load is fail')
+      }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
+}

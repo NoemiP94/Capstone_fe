@@ -1,4 +1,4 @@
-import { GET_BLOGPOST } from '../action/blogs'
+import { GET_BLOGPOST, GET_BLOG_DETAIL } from '../action/blogs'
 
 const initialState = {
   list: [],
@@ -11,6 +11,11 @@ const blogpostReducer = (state = initialState, action) => {
       return {
         ...state,
         list: action.payload,
+      }
+    case GET_BLOG_DETAIL:
+      return {
+        ...state,
+        singlePost: action.payload,
       }
     default:
       return state

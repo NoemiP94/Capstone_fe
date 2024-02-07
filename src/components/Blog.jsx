@@ -32,7 +32,7 @@ const Blog = () => {
                   </Card.Title>
                   <Button className="mt-2">
                     <Link
-                      to="/blog/:id"
+                      to={`/blog/${blog.id}`}
                       className="text-light text-decoration-none"
                     >
                       Apri l'articolo
