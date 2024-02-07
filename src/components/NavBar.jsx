@@ -1,4 +1,6 @@
-import { Col, Container, Nav, Navbar } from 'react-bootstrap'
+import { Col, Container, Image, Nav, Navbar } from 'react-bootstrap'
+import { Link } from 'react-bootstrap-icons'
+import logo from '../assets/logo.png'
 
 const NavBar = () => {
   return (
@@ -10,8 +12,13 @@ const NavBar = () => {
       data-bs-theme="dark"
     >
       <Container fluid className="w-100 align-items-center">
-        <Navbar.Brand href="#home">icona</Navbar.Brand>
-
+        <Link to="/">
+          <Image
+            src={logo}
+            className="rounded-circle me-5"
+            style={{ width: '70px' }}
+          />
+        </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav ">
           <Nav className="me-auto">
