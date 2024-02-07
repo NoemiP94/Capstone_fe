@@ -7,8 +7,7 @@ const NavBar = () => {
     <Navbar
       fluid
       expand="lg"
-      className="navbar"
-      bg="bg-black"
+      className="golden-border position-sticky top-0 z-3 bg-black"
       data-bs-theme="dark"
     >
       <Container fluid className="w-100 align-items-center">

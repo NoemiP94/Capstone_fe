@@ -11,7 +11,7 @@ import Reservation from './components/Reservation'
 function App() {
   return (
     <BrowserRouter>
-      <Container fluid className="px-0">
+      <Container fluid className="px-0 position-relative">
         <NavBar />
         <Routes>
           <Route path="/blog" element={<Blog />} />
