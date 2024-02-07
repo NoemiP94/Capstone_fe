@@ -13,6 +13,7 @@ const Reservation = () => {
 
   const handleShow = (id) => {
     setSelected(id), setShow(true)
+    console.log(id)
   }
   useEffect(() => {
     dispatch(getVisit())
