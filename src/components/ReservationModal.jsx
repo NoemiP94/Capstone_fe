@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { postReservation } from '../redux/action/reservations'
+import { getVisit } from '../redux/action/visits'
 
 const ReservationModal = ({ visitId, setShow }) => {
   const [showModal, setShowModal] = useState(true)
@@ -17,6 +18,17 @@ const ReservationModal = ({ visitId, setShow }) => {
 
   const handleClose = () => {
     setShow(false), setShowModal(false)
+  }
+
+  const handleSending = async (e) => {
+    e.preventDefault()
+    try {
+      await dispatch(postReservation(newReservation)),
+        setShowModal(false),
+        dispatch(getVisit())
+    } catch (error) {
+      console.log('Error', error)
+    }
   }
 
   useEffect(() => {
@@ -98,14 +110,7 @@ const ReservationModal = ({ visitId, setShow }) => {
               />
             </Form.Group>
 
-            <Button
-              variant="primary"
-              type="submit"
-              onClick={(e) => {
-                console.log(newReservation)
-                e.preventDefault(), dispatch(postReservation(newReservation))
-              }}
-            >
+            <Button variant="primary" type="submit" onClick={handleSending}>
               Invia prenotazione
             </Button>
           </Form>
