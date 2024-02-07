@@ -1,6 +1,6 @@
 import { Col, Container, Image, Nav, Navbar } from 'react-bootstrap'
-import { Link } from 'react-bootstrap-icons'
 import logo from '../assets/logo.png'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
   return (
@@ -15,8 +15,8 @@ const NavBar = () => {
         <Link to="/">
           <Image
             src={logo}
-            className="rounded-circle me-5"
-            style={{ width: '70px' }}
+            className="rounded-circle mx-3"
+            style={{ width: '40px' }}
           />
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -24,7 +24,11 @@ const NavBar = () => {
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Storia</Nav.Link>
-            <Nav.Link href="#blog">Blog</Nav.Link>
+            <Nav.Link>
+              <Link to="/blog" className="text-decoration-none">
+                Blog
+              </Link>
+            </Nav.Link>
             <Nav.Link href="#reservation">Prenotazioni</Nav.Link>
             <Nav.Link href="#info">Contatti</Nav.Link>
 
