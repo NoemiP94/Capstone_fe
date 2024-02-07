@@ -29,7 +29,7 @@ const NavBar = () => {
                 Blog
               </Link>
             </Nav.Link>
-            <Nav.Link href="#reservation">Prenotazioni</Nav.Link>
+            <Nav.Link href="/reservation">Prenotazioni</Nav.Link>
             <Nav.Link href="#info">Contatti</Nav.Link>
 
             <Col>
