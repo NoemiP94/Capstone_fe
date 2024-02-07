@@ -52,13 +52,16 @@ const Reservation = () => {
                 className="m-2"
                 style={{ width: '100px' }}
                 onClick={() => handleShow(visit.id)}
+                disabled={show && selected !== visit.id}
               >
                 Prenota
               </Button>
             </Col>
           </Row>
         ))}
-      {selected && <ReservationModal visitId={selected} setShow={setShow} />}
+      {show && selected && (
+        <ReservationModal visitId={selected} setShow={setShow} />
+      )}
     </Container>
   )
 }
