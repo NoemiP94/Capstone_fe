@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Button, Card, Col, Container, NavLink, Row } from 'react-bootstrap'
+import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlogpost } from '../redux/action/blogs'
 import { Link } from 'react-router-dom'
