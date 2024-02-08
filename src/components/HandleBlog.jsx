@@ -1,7 +1,13 @@
-import { useState } from 'react'
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
-import { postBlogpost } from '../redux/action/blogs'
+import { useEffect, useState } from 'react'
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  GET_POST_IMAGE,
+  getBlogpost,
+  postBlogpost,
+  postImage,
+} from '../redux/action/blogs'
+import { PencilFill, Trash3Fill } from 'react-bootstrap-icons'
 
 const HandleBlog = () => {
   const [blogpost, setBlogpost] = useState({
@@ -11,6 +17,34 @@ const HandleBlog = () => {
 
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
+  const blogData = useSelector((state) => state.blogpost.list)
+  useEffect(() => {
+    dispatch(getBlogpost())
+  }, [dispatch])
+  //   const [formImg, setFormImg] = useState(null)
+
+  //   const handleUploadImage = async () => {
+  //     try {
+  //       if (formImg) {
+  //         const blogpostId = blogpost.id
+  //         const id_post = blogpostId
+  //         if (id_post) {
+  //           const response = await postImage(id_post, formImg, token)
+  //           if (response) {
+  //             console.log('Image uploaded correctly', response)
+  //             dispatch({
+  //               type: GET_POST_IMAGE,
+  //               payload: response.url,
+  //             })
+  //           }
+  //         } else {
+  //           console.log('ID del blogpost non recuperato')
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.log('Error', error)
+  //     }
+  //   }
 
   return (
     <Container className="my-4">
@@ -48,10 +82,20 @@ const HandleBlog = () => {
                 />
               </div>
             </Form.Group>
-            <Form.Group className="mb-3 w-50">
-              <Form.Control type="file" />
-              <Button>Inserisci immagine</Button>
-            </Form.Group>
+            {/* <Form.Group className="mb-3 w-50">
+              <Form.Control
+                type="file"
+                onChange={(e) => {
+                  const file = e.target.files[0]
+                  if (file) {
+                    const formData = new FormData()
+                    formData.append('image', file)
+                    setFormImg(formData)
+                  }
+                }}
+              />
+              <Button onClick={handleUploadImage}>Inserisci immagine</Button>
+            </Form.Group> */}
 
             <Button
               type="submit"
@@ -65,11 +109,57 @@ const HandleBlog = () => {
           </Form>
         </Col>
       </Row>
+      <Row className="mt-4">
+        <h4 className="mb-3">Lista degli articoli:</h4>
+        {blogData &&
+          blogData.map((blog) => (
+            <Col
+              key={blog.id}
+              blog={blog}
+              sm={12}
+              md={5}
+              lg={3}
+              className="mb-2"
+            >
+              <Card className="glass p-2">
+                <Card.Img variant="top" src={blog.image} />
+
+                <p className="text-light my-2">{blog.title}</p>
+                <p className="overflow-scroll" style={{ height: '150px' }}>
+                  {blog.content}
+                </p>
+                <p>{blog.date}</p>
+                <Form.Control
+                  className="mt-3"
+                  type="file"
+                  //   onChange={(e) => {
+                  //     const file = e.target.files[0]
+                  //     if (file) {
+                  //       const formData = new FormData()
+                  //       formData.append('image', file)
+                  //       setFormImg(formData)
+                  //     }
+                  //   }}
+                />
+                <Button
+                  className="my-2"
+                  // onClick={handleUploadImage}
+                >
+                  upload immagine
+                </Button>
+                <div className="d-flex my-2">
+                  <PencilFill className="text-warning mx-2" />
+                  <Trash3Fill className="text-danger mx-2" />
+                </div>
+              </Card>
+            </Col>
+          ))}
+      </Row>
     </Container>
   )
 }
 export default HandleBlog
-// form creazione post + bottone upload immagini
-// lista(get) di tutti i blogpost
+// form creazione post
+// lista(get) di tutti i blogpost + bottone upload immagini
 // ogni post ha un pulsante per modificare(riempe di nuovo il form per la creazione)
 // e un pulsante per eliminare

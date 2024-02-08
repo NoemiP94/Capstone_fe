@@ -50,22 +50,26 @@ export const getBlogDetail = (id) => {
   }
 }
 
-export const postImage = (id_post, formImg, token) => {
-  return async (dispatch) => {
-    try {
-      const res = await fetch(
-        'http://localhost:3001/blogposts/' + id_post + '/image',
-        {
-          method: 'POST',
-          body: formImg,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-    } catch (error) {
-      console.log('Error', error)
+export const postImage = async (id_post, formImg, token) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3001/blogposts/${id_post}/image`,
+      {
+        method: 'POST',
+        body: formImg,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    if (res.ok) {
+      const imageData = await res.json()
+      return imageData
+    } else {
+      throw new Error('Failed to upload image')
     }
+  } catch (error) {
+    console.log('Error', error)
   }
 }
 
