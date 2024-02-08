@@ -1,5 +1,11 @@
 export const GET_BLOGPOST = 'GET_BLOGPOST'
 export const GET_BLOG_DETAIL = 'GET_BLOG_DETAIL'
+export const GET_POST_IMAGE = 'GET_POST_IMAGE'
+
+export const getImage = (image) => ({
+  type: GET_POST_IMAGE,
+  payload: image,
+})
 
 export const getBlogpost = () => {
   return async (dispatch) => {
@@ -37,6 +43,25 @@ export const getBlogDetail = (id) => {
       } else {
         throw new Error('Detail load is fail')
       }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
+}
+
+export const postImage = (id_post, formImg, token) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(
+        'http://localhost:3001/blogposts/' + id_post + '/image',
+        {
+          method: 'POST',
+          body: formImg,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
     } catch (error) {
       console.log('Error', error)
     }
