@@ -8,6 +8,7 @@ import Blog from './components/Blog'
 import BlogDetail from './components/BlogDetail'
 import Reservation from './components/Reservation'
 import Footer from './components/Footer'
+import Login from './components/Login'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/reservation" element={<Reservation />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
       </Container>
