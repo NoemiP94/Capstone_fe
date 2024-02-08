@@ -32,7 +32,11 @@ const NavBar = () => {
             <Nav.Link href="#info">Contatti</Nav.Link>
 
             <Col>
-              <Nav.Link href="#area">Area admin</Nav.Link>
+              <Nav.Link>
+                <Link to="/admin" className="text-decoration-none">
+                  Area admin
+                </Link>
+              </Nav.Link>
             </Col>
           </Nav>
         </Navbar.Collapse>

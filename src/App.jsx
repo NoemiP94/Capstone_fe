@@ -9,6 +9,7 @@ import BlogDetail from './components/BlogDetail'
 import Reservation from './components/Reservation'
 import Footer from './components/Footer'
 import Login from './components/Login'
+import AreaAdmin from './components/AreaAdmin'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={<AreaAdmin />} />
         </Routes>
         <Footer />
       </Container>
