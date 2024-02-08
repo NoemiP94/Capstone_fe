@@ -1,4 +1,5 @@
 import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const AreaAdmin = () => {
   return (
@@ -11,7 +12,14 @@ const AreaAdmin = () => {
         <Row className="flex-column my-3">
           <p>Scegli una sezione:</p>
           <Col className="my-3">
-            <Button className="w-25">Blog</Button>
+            <Button className="w-25">
+              <Link
+                to="/handleblog"
+                className="text-light text-decoration-none"
+              >
+                Blog
+              </Link>
+            </Button>
           </Col>
           <Col className="my-3">
             <Button className="w-25">Visite</Button>
