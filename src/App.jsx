@@ -7,6 +7,7 @@ import NavBar from './components/Navbar'
 import Blog from './components/Blog'
 import BlogDetail from './components/BlogDetail'
 import Reservation from './components/Reservation'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/reservation" element={<Reservation />} />
         </Routes>
+        <Footer />
       </Container>
     </BrowserRouter>
   )
