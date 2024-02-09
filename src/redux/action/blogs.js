@@ -2,6 +2,7 @@ export const GET_BLOGPOST = 'GET_BLOGPOST'
 export const GET_BLOG_DETAIL = 'GET_BLOG_DETAIL'
 export const GET_POST_IMAGE = 'GET_POST_IMAGE'
 export const POST_BLOGPOST = 'POST_BLOGPOST'
+export const PUT_BLOGPOST = 'PUT_BLOGPOST'
 
 export const getImage = (image) => ({
   type: GET_POST_IMAGE,
@@ -93,6 +94,34 @@ export const postBlogpost = (blogpost, token) => {
         alert('Blogpost salvato con successo!')
       } else {
         throw new Error('Blogpost creation is failed!')
+      }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
+}
+
+export const updateBlogpost = (id, updateBlogpost, token) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch('http://localhost:3001/blogposts/' + id, {
+        method: 'PUT',
+        body: JSON.stringify(updateBlogpost),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      if (res.ok) {
+        const data = await res.json()
+        console.log(data.content)
+        dispatch({
+          type: PUT_BLOGPOST,
+          payload: data.content,
+        })
+        alert('Blogpost modificato con successo!')
+      } else {
+        throw new Error('Error while updating the blogpost')
       }
     } catch (error) {
       console.log('Error', error)

@@ -3,6 +3,7 @@ import {
   GET_BLOG_DETAIL,
   GET_POST_IMAGE,
   POST_BLOGPOST,
+  PUT_BLOGPOST,
 } from '../action/blogs'
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   singlePost: null,
   postImage: null,
   content: null,
+  update: '',
 }
 
 const blogpostReducer = (state = initialState, action) => {
@@ -33,6 +35,11 @@ const blogpostReducer = (state = initialState, action) => {
       return {
         ...state,
         content: action.payload,
+      }
+    case PUT_BLOGPOST:
+      return {
+        ...state,
+        update: action.payload,
       }
     default:
       return state

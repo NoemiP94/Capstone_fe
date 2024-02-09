@@ -6,6 +6,7 @@ import {
   getBlogpost,
   postBlogpost,
   postImage,
+  updateBlogpost,
 } from '../redux/action/blogs'
 import { PencilFill, Trash3Fill } from 'react-bootstrap-icons'
 
@@ -23,6 +24,8 @@ const HandleBlog = () => {
     dispatch(getBlogpost())
   }, [dispatch])
   const [formImg, setFormImg] = useState(null)
+  const [updatedBlogpost, setUpdatedBlogpost] = useState(null)
+  const [idBlogpost, setIdBlogpost] = useState('')
 
   const handleUploadImage = async (blogId) => {
     try {
@@ -42,12 +45,23 @@ const HandleBlog = () => {
             console.log('Image upload successful, but no URL returned')
           }
         } else {
-          console.log('ID del blogpost non recuperato')
+          console.log('Blogpost ID not recovered')
         }
       }
     } catch (error) {
       console.log('Error', error)
     }
+  }
+
+  const handlePencilUpdate = (blog) => {
+    console.log('Matita cliccata!')
+    setUpdatedBlogpost(blog)
+    setIdBlogpost(blog.id)
+    setBlogpost({
+      title: blog.title,
+      content: blog.content,
+      id: blog.id,
+    })
   }
 
   return (
@@ -62,6 +76,7 @@ const HandleBlog = () => {
               <Form.Label>Inserisci il titolo</Form.Label>
               <Form.Control
                 type="text"
+                value={blogpost.title}
                 onChange={(e) => {
                   setBlogpost({
                     ...blogpost,
@@ -77,6 +92,7 @@ const HandleBlog = () => {
                   name="contenuto"
                   cols="70"
                   rows="15"
+                  value={blogpost.content}
                   onChange={(e) => {
                     setBlogpost({
                       ...blogpost,
@@ -95,7 +111,21 @@ const HandleBlog = () => {
                 )
               }}
             >
-              Submit
+              Salva
+            </Button>
+            <Button
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault()
+                dispatch(
+                  updateBlogpost(idBlogpost, updatedBlogpost, token)
+                ).then(() => {
+                  dispatch(getBlogpost())
+                }),
+                  console.log('post modificato')
+              }}
+            >
+              Modifica
             </Button>
           </Form>
         </Col>
@@ -141,7 +171,12 @@ const HandleBlog = () => {
                   Inserisci immagine
                 </Button>
                 <div className="d-flex my-2">
-                  <PencilFill className="text-warning mx-2" />
+                  <PencilFill
+                    className="text-warning mx-2"
+                    onClick={() => {
+                      handlePencilUpdate(blog)
+                    }}
+                  />
                   <Trash3Fill className="text-danger mx-2" />
                 </div>
               </Card>
