@@ -1,7 +1,31 @@
+import { useState } from 'react'
 import { Button, Col, Container, Form, FormControl, Row } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { postVisit } from '../redux/action/visits'
 
 const HandleVisit = () => {
+  const [visit, setVisit] = useState({
+    description: '',
+    date: '',
+    maxPeople: '',
+  })
+
+  const dispatch = useDispatch()
+  const token = localStorage.getItem('token')
+
+  const handleDate = (e) => {
+    const selected = new Date(e.target.value)
+    if (!isNaN(selected)) {
+      const formatted = selected.toISOString().slice(0, 16)
+      setVisit({
+        ...visit,
+        date: formatted,
+      })
+    } else {
+      console.log('Non valido!')
+    }
+  }
   return (
     <Container className="my-4">
       <Row className="flex-column">
@@ -17,32 +41,46 @@ const HandleVisit = () => {
               <Form.Control
                 type="text"
                 // value={blogpost.title}
-                // onChange={(e) => {
-                //   setBlogpost({
-                //     ...blogpost,
-                //     title: e.target.value,
-                //   })
-                // }}
+                onChange={(e) => {
+                  setVisit({
+                    ...visit,
+                    description: e.target.value,
+                  })
+                }}
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Inserisci data e ora</Form.Label>
-              <FormControl type="datetime-local" className="w-25" />
+              <FormControl
+                type="datetime-local"
+                className="w-25"
+                onChange={handleDate}
+              />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>
                 Inserisci il numero massimo di persone prenotabili
               </Form.Label>
-              <FormControl type="number" className="w-25" />
+              <FormControl
+                type="number"
+                className="w-25"
+                onChange={(e) => {
+                  setVisit({
+                    ...visit,
+                    maxPeople: e.target.value,
+                  })
+                }}
+              />
             </Form.Group>
             <Button
               type="submit"
-              // onClick={(e) => {
-              //   e.preventDefault()
-              //   dispatch(postBlogpost(blogpost, token)).then(
-              //     dispatch(getBlogpost())
-              //   )
-              // }}
+              onClick={(e) => {
+                e.preventDefault()
+                dispatch(postVisit(visit, token))
+                // .then(
+                //   dispatch(getBlogpost())
+                // )
+              }}
             >
               Salva
             </Button>
