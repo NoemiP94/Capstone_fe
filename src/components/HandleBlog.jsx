@@ -13,6 +13,7 @@ const HandleBlog = () => {
   const [blogpost, setBlogpost] = useState({
     title: '',
     content: '',
+    id: null,
   })
 
   const dispatch = useDispatch()
@@ -21,30 +22,33 @@ const HandleBlog = () => {
   useEffect(() => {
     dispatch(getBlogpost())
   }, [dispatch])
-  //   const [formImg, setFormImg] = useState(null)
+  const [formImg, setFormImg] = useState(null)
 
-  //   const handleUploadImage = async () => {
-  //     try {
-  //       if (formImg) {
-  //         const blogpostId = blogpost.id
-  //         const id_post = blogpostId
-  //         if (id_post) {
-  //           const response = await postImage(id_post, formImg, token)
-  //           if (response) {
-  //             console.log('Image uploaded correctly', response)
-  //             dispatch({
-  //               type: GET_POST_IMAGE,
-  //               payload: response.url,
-  //             })
-  //           }
-  //         } else {
-  //           console.log('ID del blogpost non recuperato')
-  //         }
-  //       }
-  //     } catch (error) {
-  //       console.log('Error', error)
-  //     }
-  //   }
+  const handleUploadImage = async (blogId) => {
+    try {
+      console.log(blogId)
+
+      if (formImg) {
+        const id_post = blogId ? blogId.toString() : null
+        if (id_post) {
+          const response = await postImage(id_post, formImg, token)
+          if (response !== null) {
+            console.log('Image uploaded correctly', response)
+            dispatch({
+              type: GET_POST_IMAGE,
+              payload: response.url,
+            })
+          } else {
+            console.log('Image upload successful, but no URL returned')
+          }
+        } else {
+          console.log('ID del blogpost non recuperato')
+        }
+      }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
 
   return (
     <Container className="my-4">
@@ -82,26 +86,13 @@ const HandleBlog = () => {
                 />
               </div>
             </Form.Group>
-            {/* <Form.Group className="mb-3 w-50">
-              <Form.Control
-                type="file"
-                onChange={(e) => {
-                  const file = e.target.files[0]
-                  if (file) {
-                    const formData = new FormData()
-                    formData.append('image', file)
-                    setFormImg(formData)
-                  }
-                }}
-              />
-              <Button onClick={handleUploadImage}>Inserisci immagine</Button>
-            </Form.Group> */}
-
             <Button
               type="submit"
               onClick={(e) => {
                 e.preventDefault()
-                dispatch(postBlogpost(blogpost, token))
+                dispatch(postBlogpost(blogpost, token)).then(
+                  dispatch(getBlogpost())
+                )
               }}
             >
               Submit
@@ -132,20 +123,22 @@ const HandleBlog = () => {
                 <Form.Control
                   className="mt-3"
                   type="file"
-                  //   onChange={(e) => {
-                  //     const file = e.target.files[0]
-                  //     if (file) {
-                  //       const formData = new FormData()
-                  //       formData.append('image', file)
-                  //       setFormImg(formData)
-                  //     }
-                  //   }}
+                  onChange={(e) => {
+                    const file = e.target.files[0]
+                    if (file) {
+                      const formData = new FormData()
+                      formData.append('image', file)
+                      setFormImg(formData)
+                    }
+                  }}
                 />
                 <Button
                   className="my-2"
-                  // onClick={handleUploadImage}
+                  onClick={() => {
+                    handleUploadImage(blog.id)
+                  }}
                 >
-                  upload immagine
+                  Inserisci immagine
                 </Button>
                 <div className="d-flex my-2">
                   <PencilFill className="text-warning mx-2" />
@@ -159,7 +152,6 @@ const HandleBlog = () => {
   )
 }
 export default HandleBlog
-// form creazione post
-// lista(get) di tutti i blogpost + bottone upload immagini
+
 // ogni post ha un pulsante per modificare(riempe di nuovo il form per la creazione)
 // e un pulsante per eliminare

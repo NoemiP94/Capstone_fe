@@ -63,8 +63,7 @@ export const postImage = async (id_post, formImg, token) => {
       }
     )
     if (res.ok) {
-      const imageData = await res.json()
-      return imageData
+      return null
     } else {
       throw new Error('Failed to upload image')
     }
