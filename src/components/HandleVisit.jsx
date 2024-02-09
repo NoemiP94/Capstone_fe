@@ -1,8 +1,18 @@
-import { useState } from 'react'
-import { Button, Col, Container, Form, FormControl, Row } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  FormControl,
+  Row,
+} from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { postVisit } from '../redux/action/visits'
+import { getVisit, postVisit } from '../redux/action/visits'
+import { PencilFill, Trash3Fill } from 'react-bootstrap-icons'
+import { format } from 'date-fns'
 
 const HandleVisit = () => {
   const [visit, setVisit] = useState({
@@ -13,6 +23,10 @@ const HandleVisit = () => {
 
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
+  const visitData = useSelector((state) => state.visit.list)
+  useEffect(() => {
+    dispatch(getVisit())
+  }, [dispatch])
 
   const handleDate = (e) => {
     const selected = new Date(e.target.value)
@@ -59,7 +73,7 @@ const HandleVisit = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>
-                Inserisci il numero massimo di persone prenotabili
+                Inserisci il numero massimo di posti disponibili
               </Form.Label>
               <FormControl
                 type="number"
@@ -76,10 +90,7 @@ const HandleVisit = () => {
               type="submit"
               onClick={(e) => {
                 e.preventDefault()
-                dispatch(postVisit(visit, token))
-                // .then(
-                //   dispatch(getBlogpost())
-                // )
+                dispatch(postVisit(visit, token)).then(dispatch(getVisit()))
               }}
             >
               Salva
@@ -97,64 +108,39 @@ const HandleVisit = () => {
           </Form>
         </Col>
       </Row>
-      {/* <Row className="mt-4">
+      <Row className="mt-4">
         <h4 className="mb-3">Lista delle visite:</h4>
-        {blogData &&
-          blogData.map((blog) => (
-            <Col
-              key={blog.id}
-              blog={blog}
-              sm={12}
-              md={5}
-              lg={3}
-              className="mb-2"
-            >
+        {visitData &&
+          visitData.map((visit) => (
+            <Col key={visit.id} sm={12} md={5} lg={3} className="mb-2">
               <Card className="glass p-2">
-                <Card.Img variant="top" src={blog.image} />
-
-                <p className="text-light my-2">{blog.title}</p>
-                <p className="overflow-scroll" style={{ height: '150px' }}>
-                  {blog.content}
+                <p className="text-light my-2">
+                  Descrizione: {visit.description}
                 </p>
-                <p>{blog.date}</p>
-                <Form.Control
-                  className="mt-3"
-                  type="file"
-                  onChange={(e) => {
-                    const file = e.target.files[0]
-                    if (file) {
-                      const formData = new FormData()
-                      formData.append('image', file)
-                      setFormImg(formData)
-                    }
-                  }}
-                />
-                <Button
-                  className="my-2"
-                  onClick={() => {
-                    handleUploadImage(blog.id)
-                  }}
-                >
-                  Inserisci immagine
-                </Button>
+
+                <p>
+                  Data e ora: {format(new Date(visit.date), 'dd/MM/yyyy HH:mm')}
+                </p>
+                <p>Posti disponibili: {visit.maxPeople}</p>
+
                 <div className="d-flex my-2">
                   <PencilFill
                     className="text-warning mx-2"
-                    onClick={() => {
-                      handlePencilUpdate(blog)
-                    }}
+                    // onClick={() => {
+                    //   handlePencilUpdate(blog)
+                    // }}
                   />
                   <Trash3Fill
                     className="text-danger mx-2"
-                    onClick={() => {
-                      handleDelete(blog)
-                    }}
+                    // onClick={() => {
+                    //   handleDelete(blog)
+                    // }}
                   />
                 </div>
               </Card>
             </Col>
           ))}
-      </Row> */}
+      </Row>
       <Row className="my-4">
         <Button style={{ width: '100px' }} className="ms-2">
           <Link to="/admin" className="text-light text-decoration-none">

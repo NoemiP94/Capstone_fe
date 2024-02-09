@@ -154,14 +154,7 @@ const HandleBlog = () => {
         <h4 className="mb-3">Lista degli articoli:</h4>
         {blogData &&
           blogData.map((blog) => (
-            <Col
-              key={blog.id}
-              blog={blog}
-              sm={12}
-              md={5}
-              lg={3}
-              className="mb-2"
-            >
+            <Col key={blog.id} sm={12} md={5} lg={3} className="mb-2">
               <Card className="glass p-2">
                 <Card.Img variant="top" src={blog.image} />
 
