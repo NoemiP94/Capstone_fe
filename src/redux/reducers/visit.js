@@ -1,8 +1,9 @@
-import { GET_VISIT, POST_VISIT } from '../action/visits'
+import { GET_VISIT, POST_VISIT, PUT_VISIT } from '../action/visits'
 
 const initialState = {
   list: [],
   content: null,
+  update: '',
 }
 
 const visitReducer = (state = initialState, action) => {
@@ -16,6 +17,11 @@ const visitReducer = (state = initialState, action) => {
       return {
         ...state,
         content: action.payload,
+      }
+    case PUT_VISIT:
+      return {
+        ...state,
+        update: action.payload,
       }
     default:
       return state

@@ -1,5 +1,6 @@
 export const GET_VISIT = 'GET_VISIT'
 export const POST_VISIT = 'POST_VISIT'
+export const PUT_VISIT = 'PUT_VISIT'
 
 export const getVisit = () => {
   return async (dispatch) => {
@@ -43,6 +44,34 @@ export const postVisit = (visit, token) => {
         alert('Visita creata con successo!')
       } else {
         throw new Error('Visit creation is failed!')
+      }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
+}
+
+export const updateVisit = (id, updateVisit, token) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch('http://localhost:3001/visits/' + id, {
+        method: 'PUT',
+        body: JSON.stringify(updateVisit),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      if (res.ok) {
+        const data = await res.json()
+        console.log(data.content)
+        dispatch({
+          type: PUT_VISIT,
+          payload: data.content,
+        })
+        alert('Visita modificata con successo!')
+      } else {
+        throw new Error('Error while updating the visit')
       }
     } catch (error) {
       console.log('Error', error)
