@@ -1,4 +1,5 @@
 import {
+  DELETE_BLOGPOST,
   GET_BLOGPOST,
   GET_BLOG_DETAIL,
   GET_POST_IMAGE,
@@ -40,6 +41,11 @@ const blogpostReducer = (state = initialState, action) => {
       return {
         ...state,
         update: action.payload,
+      }
+    case DELETE_BLOGPOST:
+      return {
+        ...state,
+        list: state.list.filter((post) => post.id !== action.payload),
       }
     default:
       return state

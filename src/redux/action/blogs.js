@@ -3,6 +3,7 @@ export const GET_BLOG_DETAIL = 'GET_BLOG_DETAIL'
 export const GET_POST_IMAGE = 'GET_POST_IMAGE'
 export const POST_BLOGPOST = 'POST_BLOGPOST'
 export const PUT_BLOGPOST = 'PUT_BLOGPOST'
+export const DELETE_BLOGPOST = 'DELETE_BLOGPOST'
 
 export const getImage = (image) => ({
   type: GET_POST_IMAGE,
@@ -122,6 +123,29 @@ export const updateBlogpost = (id, updateBlogpost, token) => {
         alert('Blogpost modificato con successo!')
       } else {
         throw new Error('Error while updating the blogpost')
+      }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
+}
+
+export const deleteBlogpost = (id, token) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch('http://localhost:3001/blogposts/' + id, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (res.ok) {
+        dispatch({
+          type: DELETE_BLOGPOST,
+          payload: id,
+        })
+      } else {
+        throw new Error('Error in deleting the blogpost!')
       }
     } catch (error) {
       console.log('Error', error)

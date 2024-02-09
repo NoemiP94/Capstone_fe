@@ -3,6 +3,7 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   GET_POST_IMAGE,
+  deleteBlogpost,
   getBlogpost,
   postBlogpost,
   postImage,
@@ -183,7 +184,13 @@ const HandleBlog = () => {
                       handlePencilUpdate(blog)
                     }}
                   />
-                  <Trash3Fill className="text-danger mx-2" />
+                  <Trash3Fill
+                    className="text-danger mx-2"
+                    onClick={() => {
+                      dispatch(deleteBlogpost(blog.id, token))
+                      dispatch(getBlogpost())
+                    }}
+                  />
                 </div>
               </Card>
             </Col>
@@ -194,5 +201,4 @@ const HandleBlog = () => {
 }
 export default HandleBlog
 
-// ogni post ha un pulsante per modificare(riempe di nuovo il form per la creazione)
 // e un pulsante per eliminare
