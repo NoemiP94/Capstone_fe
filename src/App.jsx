@@ -11,6 +11,7 @@ import Footer from './components/Footer'
 import Login from './components/Login'
 import AreaAdmin from './components/AreaAdmin'
 import HandleBlog from './components/HandleBlog'
+import HandleVisit from './components/HandleVisit'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<AreaAdmin />} />
           <Route path="/handleblog" element={<HandleBlog />} />
+          <Route path="/handlevisit" element={<HandleVisit />} />
         </Routes>
         <Footer />
       </Container>
