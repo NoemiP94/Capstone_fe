@@ -64,6 +64,16 @@ const HandleBlog = () => {
     })
   }
 
+  const handleUpdate = async () => {
+    try {
+      await dispatch(updateBlogpost(idBlogpost, blogpost, token))
+      dispatch(getBlogpost())
+      console.log('Modificato con successo')
+    } catch (error) {
+      console.log("Errore nell'aggiornamento", error)
+    }
+  }
+
   return (
     <Container className="my-4">
       <Row className="flex-column">
@@ -114,15 +124,11 @@ const HandleBlog = () => {
               Salva
             </Button>
             <Button
+              className="ms-3"
               type="submit"
               onClick={(e) => {
                 e.preventDefault()
-                dispatch(
-                  updateBlogpost(idBlogpost, updatedBlogpost, token)
-                ).then(() => {
-                  dispatch(getBlogpost())
-                }),
-                  console.log('post modificato')
+                handleUpdate()
               }}
             >
               Modifica
