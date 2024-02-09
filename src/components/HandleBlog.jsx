@@ -69,9 +69,21 @@ const HandleBlog = () => {
     try {
       await dispatch(updateBlogpost(idBlogpost, blogpost, token))
       dispatch(getBlogpost())
+
       console.log('Modificato con successo')
     } catch (error) {
       console.log("Errore nell'aggiornamento", error)
+    }
+  }
+
+  const handleDelete = async (blog) => {
+    try {
+      console.log(blog.id)
+      await dispatch(deleteBlogpost(blog.id, token))
+      dispatch(getBlogpost())
+      console.log('Eliminato con successo')
+    } catch (error) {
+      console.log("Errore nell'eliminazione", error)
     }
   }
 
@@ -187,8 +199,7 @@ const HandleBlog = () => {
                   <Trash3Fill
                     className="text-danger mx-2"
                     onClick={() => {
-                      dispatch(deleteBlogpost(blog.id, token))
-                      dispatch(getBlogpost())
+                      handleDelete(blog)
                     }}
                   />
                 </div>
