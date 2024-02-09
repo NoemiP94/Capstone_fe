@@ -10,6 +10,7 @@ import {
   updateBlogpost,
 } from '../redux/action/blogs'
 import { PencilFill, Trash3Fill } from 'react-bootstrap-icons'
+import { Link } from 'react-router-dom'
 
 const HandleBlog = () => {
   const [blogpost, setBlogpost] = useState({
@@ -207,9 +208,14 @@ const HandleBlog = () => {
             </Col>
           ))}
       </Row>
+      <Row className="my-4">
+        <Button style={{ width: '100px' }} className="ms-2">
+          <Link to="/admin" className="text-light text-decoration-none">
+            Indietro
+          </Link>
+        </Button>
+      </Row>
     </Container>
   )
 }
 export default HandleBlog
-
-// e un pulsante per eliminare
