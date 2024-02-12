@@ -1,9 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { getReservationDetail } from '../redux/action/reservations'
 import { format } from 'date-fns'
+import { PencilFill, Trash3Fill } from 'react-bootstrap-icons'
 
 const ReservationDetail = () => {
   const { id } = useParams()
@@ -16,6 +17,28 @@ const ReservationDetail = () => {
   useEffect(() => {
     dispatch(getReservationDetail(id, token))
   }, [dispatch, id])
+
+  const [updatedReservation, setUpdatedReservation] = useState(null)
+  const [idReservation, setIdReservation] = useState('')
+  const [reservation, setReservation] = useState({
+    email: '',
+    name: '',
+    surname: '',
+    phoneNumber: '',
+    people: '',
+  })
+  const handlePencilUpdate = (reservation) => {
+    setUpdatedReservation(reservation)
+    setIdReservation(reservation.id)
+    setReservation({
+      email: reservation.email,
+      name: reservation.name,
+      surname: reservation.surname,
+      phoneNumber: reservation.phoneNumber,
+      people: reservation.people,
+    })
+  }
+
   return (
     <Container className="my-4">
       <Row>
@@ -49,6 +72,20 @@ const ReservationDetail = () => {
             <Col className="my-2">
               Data della prenotazione: {singleReservation.date}
             </Col>
+            <div className="d-flex my-2">
+              <PencilFill
+                className="text-warning mx-2"
+                onClick={() => {
+                  handlePencilUpdate(reservation)
+                }}
+              />
+              <Trash3Fill
+                className="text-danger mx-2"
+                // onClick={() => {
+                //   handleDelete(visit)
+                // }}
+              />
+            </div>
           </>
         )}
       </Row>

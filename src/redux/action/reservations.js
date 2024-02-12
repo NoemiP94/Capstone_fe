@@ -1,6 +1,7 @@
 export const POST_RESERVATION = 'POST_RESERVATION'
 export const GET_RESERVATION = 'GET_RESERVATION'
 export const GET_RESERVATION_DETAIL = 'GET_RESERVATION_DETAIL'
+export const PUT_RESERVATION = 'PUT_RESERVATION'
 
 export const postReservation = (reservation) => {
   return async (dispatch) => {
@@ -79,6 +80,34 @@ export const getReservationDetail = (id, token) => {
         console.log('Detail has been load correctly')
       } else {
         throw new Error('Detail load is fail')
+      }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
+}
+
+export const updateReservation = (id, updateReservation, token) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch('http://localhost:3001/reservations/' + id, {
+        method: 'PUT',
+        body: JSON.stringify(updateReservation),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      if (res.ok) {
+        const data = await res.json()
+        console.log(data)
+        dispatch({
+          type: PUT_RESERVATION,
+          payload: data.content,
+        })
+        alert('Prenotazione modificata con successo!')
+      } else {
+        throw new Error('Error while updating the reservation')
       }
     } catch (error) {
       console.log('Error', error)
