@@ -1,4 +1,9 @@
-import { GET_VISIT, POST_VISIT, PUT_VISIT } from '../action/visits'
+import {
+  DELETE_VISIT,
+  GET_VISIT,
+  POST_VISIT,
+  PUT_VISIT,
+} from '../action/visits'
 
 const initialState = {
   list: [],
@@ -22,6 +27,11 @@ const visitReducer = (state = initialState, action) => {
       return {
         ...state,
         update: action.payload,
+      }
+    case DELETE_VISIT:
+      return {
+        ...state,
+        list: state.list.filter((visit) => visit.id !== action.payload),
       }
     default:
       return state

@@ -1,6 +1,7 @@
 export const GET_VISIT = 'GET_VISIT'
 export const POST_VISIT = 'POST_VISIT'
 export const PUT_VISIT = 'PUT_VISIT'
+export const DELETE_VISIT = 'DELETE_VISIT'
 
 export const getVisit = () => {
   return async (dispatch) => {
@@ -72,6 +73,29 @@ export const updateVisit = (id, updateVisit, token) => {
         alert('Visita modificata con successo!')
       } else {
         throw new Error('Error while updating the visit')
+      }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
+}
+
+export const deleteVisit = (id, token) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch('http://localhost:3001/visits/' + id, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (res.ok) {
+        dispatch({
+          type: DELETE_VISIT,
+          payload: id,
+        })
+      } else {
+        throw new Error('Error in deleting the visit!')
       }
     } catch (error) {
       console.log('Error', error)

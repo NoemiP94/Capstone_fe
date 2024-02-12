@@ -10,7 +10,12 @@ import {
 } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getVisit, postVisit } from '../redux/action/visits'
+import {
+  deleteVisit,
+  getVisit,
+  postVisit,
+  updateVisit,
+} from '../redux/action/visits'
 import { PencilFill, Trash3Fill } from 'react-bootstrap-icons'
 import { format } from 'date-fns'
 
@@ -40,6 +45,40 @@ const HandleVisit = () => {
       console.log('Non valido!')
     }
   }
+
+  const [updatedVisit, setUpdatedVisit] = useState(null)
+  const [idVisit, setIdVisit] = useState('')
+
+  const handlePencilUpdate = (visit) => {
+    setUpdatedVisit(visit)
+    setIdVisit(visit.id)
+    setVisit({
+      description: visit.description,
+      date: visit.date,
+      maxPeople: visit.maxPeople,
+    })
+  }
+
+  const handleUpdate = async () => {
+    try {
+      await dispatch(updateVisit(idVisit, visit, token))
+      dispatch(getVisit())
+      console.log('Modificato con successo!')
+    } catch (error) {
+      console.log("Errore nell'aggiornamento", error)
+    }
+  }
+
+  const handleDelete = async (visit) => {
+    try {
+      await dispatch(deleteVisit(visit.id, token))
+      dispatch(getVisit())
+      console.log('Eliminato con successo')
+    } catch (error) {
+      console.log("Errore nell'eliminazione", error)
+    }
+  }
+
   return (
     <Container className="my-4">
       <Row className="flex-column">
@@ -54,7 +93,7 @@ const HandleVisit = () => {
               </Form.Label>
               <Form.Control
                 type="text"
-                // value={blogpost.title}
+                value={visit.description}
                 onChange={(e) => {
                   setVisit({
                     ...visit,
@@ -68,6 +107,7 @@ const HandleVisit = () => {
               <FormControl
                 type="datetime-local"
                 className="w-25"
+                value={visit.date}
                 onChange={handleDate}
               />
             </Form.Group>
@@ -78,6 +118,7 @@ const HandleVisit = () => {
               <FormControl
                 type="number"
                 className="w-25"
+                value={visit.maxPeople}
                 onChange={(e) => {
                   setVisit({
                     ...visit,
@@ -93,9 +134,9 @@ const HandleVisit = () => {
                 dispatch(postVisit(visit, token)).then(dispatch(getVisit()))
               }}
             >
-              Salva
+              Crea
             </Button>
-            {/* <Button
+            <Button
               className="ms-3"
               type="submit"
               onClick={(e) => {
@@ -103,8 +144,8 @@ const HandleVisit = () => {
                 handleUpdate()
               }}
             >
-              Modifica
-            </Button> */}
+              Salva modifiche
+            </Button>
           </Form>
         </Col>
       </Row>
@@ -126,15 +167,15 @@ const HandleVisit = () => {
                 <div className="d-flex my-2">
                   <PencilFill
                     className="text-warning mx-2"
-                    // onClick={() => {
-                    //   handlePencilUpdate(blog)
-                    // }}
+                    onClick={() => {
+                      handlePencilUpdate(visit)
+                    }}
                   />
                   <Trash3Fill
                     className="text-danger mx-2"
-                    // onClick={() => {
-                    //   handleDelete(blog)
-                    // }}
+                    onClick={() => {
+                      handleDelete(visit)
+                    }}
                   />
                 </div>
               </Card>

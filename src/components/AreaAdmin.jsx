@@ -12,24 +12,14 @@ const AreaAdmin = () => {
         <Row className="flex-column my-3">
           <p>Scegli una sezione:</p>
           <Col className="my-3">
-            <Button className="w-25">
-              <Link
-                to="/handleblog"
-                className="text-light text-decoration-none"
-              >
-                Blog
-              </Link>
-            </Button>
+            <Link to="/handleblog" className="text-light text-decoration-none">
+              <Button className="w-25">Blog</Button>
+            </Link>
           </Col>
           <Col className="my-3">
-            <Button className="w-25">
-              <Link
-                to="/handlevisit"
-                className="text-light text-decoration-none"
-              >
-                Visite
-              </Link>
-            </Button>
+            <Link to="/handlevisit" className="text-light text-decoration-none">
+              <Button className="w-25">Visite</Button>
+            </Link>
           </Col>
           <Col className="my-3">
             <Button className="w-25">Prenotazioni</Button>

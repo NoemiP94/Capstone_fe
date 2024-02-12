@@ -135,7 +135,7 @@ const HandleBlog = () => {
                 )
               }}
             >
-              Salva
+              Crea
             </Button>
             <Button
               className="ms-3"
@@ -145,7 +145,7 @@ const HandleBlog = () => {
                 handleUpdate()
               }}
             >
-              Modifica
+              Salva modifiche
             </Button>
           </Form>
         </Col>
