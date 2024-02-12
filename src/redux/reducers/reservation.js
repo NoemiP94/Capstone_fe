@@ -1,7 +1,8 @@
-import { POST_RESERVATION } from '../action/reservations'
+import { GET_RESERVATION, POST_RESERVATION } from '../action/reservations'
 
 const initialState = {
   content: null,
+  list: [],
 }
 
 const reservationReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const reservationReducer = (state = initialState, action) => {
       return {
         ...state,
         content: action.payload,
+      }
+    case GET_RESERVATION:
+      return {
+        ...state,
+        list: action.payload,
       }
     default:
       return state

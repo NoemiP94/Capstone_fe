@@ -12,6 +12,7 @@ import Login from './components/Login'
 import AreaAdmin from './components/AreaAdmin'
 import HandleBlog from './components/HandleBlog'
 import HandleVisit from './components/HandleVisit'
+import HandleReservation from './components/HandleReservation'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/admin" element={<AreaAdmin />} />
           <Route path="/handleblog" element={<HandleBlog />} />
           <Route path="/handlevisit" element={<HandleVisit />} />
+          <Route path="/handleReservation" element={<HandleReservation />} />
         </Routes>
         <Footer />
       </Container>

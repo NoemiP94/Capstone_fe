@@ -22,7 +22,12 @@ const AreaAdmin = () => {
             </Link>
           </Col>
           <Col className="my-3">
-            <Button className="w-25">Prenotazioni</Button>
+            <Link
+              to="/handleReservation"
+              className="text-light text-decoration-none"
+            >
+              <Button className="w-25">Prenotazioni</Button>
+            </Link>
           </Col>
           <Col className="my-3">
             <Button className="w-25">Utenti</Button>
