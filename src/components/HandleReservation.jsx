@@ -74,6 +74,13 @@ const HandleReservation = () => {
             </Row>
           )
         })}
+      <Row className="my-4">
+        <Button style={{ width: '100px' }} className="ms-2">
+          <Link to="/admin" className="text-light text-decoration-none">
+            Indietro
+          </Link>
+        </Button>
+      </Row>
     </Container>
   )
 }
