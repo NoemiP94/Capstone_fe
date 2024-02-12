@@ -14,13 +14,13 @@ const UpdateReservationModal = ({
 }) => {
   const dispatch = useDispatch()
   const [newReservation, setNewReservation] = useState({
-    id: reservation.id || '',
-    email: reservation.email || '',
-    name: reservation.name || '',
-    surname: reservation.surname || '',
-    phoneNumber: reservation.phoneNumber || '',
-    people: reservation.people || '',
-    visit_id: reservation.visit_id || '',
+    id: reservation.id,
+    email: reservation.email,
+    name: reservation.name,
+    surname: reservation.surname,
+    phoneNumber: reservation.phoneNumber,
+    people: reservation.people,
+    visit_id: reservation.visit_id.id,
   })
   const handleClose = () => {
     setShowModal(false)
@@ -36,13 +36,10 @@ const UpdateReservationModal = ({
       return
     }
     try {
-      const formatted = {
-        ...newReservation,
-        id: reservationId.toString(),
-      }
-      await dispatch(updateReservation(reservationId, formatted, token))
+      await dispatch(updateReservation(reservationId, newReservation, token))
       setShowModal(false)
-      //   dispatch(getReservationDetail(token))
+
+      await dispatch(getReservationDetail(reservationId, token))
     } catch (error) {
       console.log('Error', error)
     }

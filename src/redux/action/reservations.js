@@ -91,10 +91,16 @@ export const getReservationDetail = (id, token) => {
 export const updateReservation = (id, updateReservation, token) => {
   return async (dispatch) => {
     try {
-      console.log('Corpo richiesta: ', JSON.stringify(updateReservation))
+      const phoneNumberString = String(updateReservation.phoneNumber)
+      const updatedPayload = {
+        ...updateReservation,
+        phoneNumber: phoneNumberString,
+      }
+
+      console.log('Corpo richiesta: ', JSON.stringify(updatedPayload))
       const res = await fetch('http://localhost:3001/reservations/' + id, {
         method: 'PUT',
-        body: JSON.stringify(updateReservation),
+        body: JSON.stringify(updatedPayload),
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -102,7 +108,6 @@ export const updateReservation = (id, updateReservation, token) => {
       })
       if (res.ok) {
         const data = await res.json()
-        console.log('dati fetch', data.content)
         dispatch({
           type: PUT_RESERVATION,
           payload: data.content,
