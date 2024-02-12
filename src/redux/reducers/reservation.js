@@ -1,4 +1,5 @@
 import {
+  DELETE_RESERVATION,
   GET_RESERVATION,
   GET_RESERVATION_DETAIL,
   POST_RESERVATION,
@@ -33,6 +34,13 @@ const reservationReducer = (state = initialState, action) => {
       return {
         ...state,
         update: action.payload,
+      }
+    case DELETE_RESERVATION:
+      return {
+        ...state,
+        list: state.list.filter(
+          (reservation) => reservation.id !== action.payload
+        ),
       }
     default:
       return state

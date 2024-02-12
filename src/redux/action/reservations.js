@@ -2,6 +2,7 @@ export const POST_RESERVATION = 'POST_RESERVATION'
 export const GET_RESERVATION = 'GET_RESERVATION'
 export const GET_RESERVATION_DETAIL = 'GET_RESERVATION_DETAIL'
 export const PUT_RESERVATION = 'PUT_RESERVATION'
+export const DELETE_RESERVATION = 'DELETE_RESERVATION'
 
 export const postReservation = (reservation) => {
   return async (dispatch) => {
@@ -90,6 +91,7 @@ export const getReservationDetail = (id, token) => {
 export const updateReservation = (id, updateReservation, token) => {
   return async (dispatch) => {
     try {
+      console.log('Corpo richiesta: ', JSON.stringify(updateReservation))
       const res = await fetch('http://localhost:3001/reservations/' + id, {
         method: 'PUT',
         body: JSON.stringify(updateReservation),
@@ -100,7 +102,7 @@ export const updateReservation = (id, updateReservation, token) => {
       })
       if (res.ok) {
         const data = await res.json()
-        console.log(data)
+        console.log('dati fetch', data.content)
         dispatch({
           type: PUT_RESERVATION,
           payload: data.content,
@@ -108,6 +110,29 @@ export const updateReservation = (id, updateReservation, token) => {
         alert('Prenotazione modificata con successo!')
       } else {
         throw new Error('Error while updating the reservation')
+      }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
+}
+
+export const deleteReservation = (id, token) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch('http://localhost:3001/reservations/' + id, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (res.ok) {
+        dispatch({
+          type: DELETE_RESERVATION,
+          payload: id,
+        })
+      } else {
+        throw new Error('Error in deleting the reservation!')
       }
     } catch (error) {
       console.log('Error', error)

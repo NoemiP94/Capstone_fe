@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { getReservation } from '../redux/action/reservations'
+import { deleteReservation, getReservation } from '../redux/action/reservations'
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
+import { Trash3Fill } from 'react-bootstrap-icons'
 
 const HandleReservation = () => {
   const reservationData = useSelector((state) => state.reservation.list)
@@ -14,6 +15,15 @@ const HandleReservation = () => {
     dispatch(getReservation(token))
   }, [dispatch])
 
+  const handleDelete = async (reservation) => {
+    try {
+      await dispatch(deleteReservation(reservation.id, token))
+      dispatch(getReservation(token))
+      console.log('Eliminato con successo')
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
   return (
     <Container>
       <Row className="my-3">
@@ -54,6 +64,12 @@ const HandleReservation = () => {
                     Dettagli
                   </Button>
                 </Link>
+                <Trash3Fill
+                  className="text-danger mx-2"
+                  onClick={() => {
+                    handleDelete(reservation)
+                  }}
+                />
               </Col>
             </Row>
           )

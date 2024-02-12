@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 import { getReservationDetail } from '../redux/action/reservations'
 import { format } from 'date-fns'
 import { PencilFill, Trash3Fill } from 'react-bootstrap-icons'
+import UpdateReservationModal from './UpdateReservationModal'
 
 const ReservationDetail = () => {
   const { id } = useParams()
@@ -18,25 +19,19 @@ const ReservationDetail = () => {
     dispatch(getReservationDetail(id, token))
   }, [dispatch, id])
 
-  const [updatedReservation, setUpdatedReservation] = useState(null)
+  //   const [updatedReservation, setUpdatedReservation] = useState(null)
   const [idReservation, setIdReservation] = useState('')
-  const [reservation, setReservation] = useState({
-    email: '',
-    name: '',
-    surname: '',
-    phoneNumber: '',
-    people: '',
-  })
-  const handlePencilUpdate = (reservation) => {
-    setUpdatedReservation(reservation)
-    setIdReservation(reservation.id)
-    setReservation({
-      email: reservation.email,
-      name: reservation.name,
-      surname: reservation.surname,
-      phoneNumber: reservation.phoneNumber,
-      people: reservation.people,
-    })
+  //   const [reservation, setReservation] = useState({
+  //     email: '',
+  //     name: '',
+  //     surname: '',
+  //     phoneNumber: '',
+  //     people: '',
+  //   })
+  const [showModal, setShowModal] = useState(false)
+
+  const handlePencilUpdate = () => {
+    setShowModal(true)
   }
 
   return (
@@ -76,14 +71,8 @@ const ReservationDetail = () => {
               <PencilFill
                 className="text-warning mx-2"
                 onClick={() => {
-                  handlePencilUpdate(reservation)
+                  handlePencilUpdate()
                 }}
-              />
-              <Trash3Fill
-                className="text-danger mx-2"
-                // onClick={() => {
-                //   handleDelete(visit)
-                // }}
               />
             </div>
           </>
@@ -97,6 +86,13 @@ const ReservationDetail = () => {
           <Button style={{ width: '120px' }}>Indietro</Button>
         </Link>
       </Row>
+      {showModal && singleReservation && (
+        <UpdateReservationModal
+          setShowModal={setShowModal}
+          reservation={singleReservation}
+          reservationId={singleReservation.id}
+        />
+      )}
     </Container>
   )
 }
