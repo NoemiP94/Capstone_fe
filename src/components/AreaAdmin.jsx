@@ -23,7 +23,7 @@ const AreaAdmin = () => {
           </Col>
           <Col className="my-3">
             <Link
-              to="/handleReservation"
+              to={'/handlereservation'}
               className="text-light text-decoration-none"
             >
               <Button className="w-25">Prenotazioni</Button>

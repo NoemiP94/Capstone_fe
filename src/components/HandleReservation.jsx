@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getReservation } from '../redux/action/reservations'
 import { format } from 'date-fns'
+import { Link } from 'react-router-dom'
 
 const HandleReservation = () => {
   const reservationData = useSelector((state) => state.reservation.list)
-  const visitData = useSelector((state) => state.visit.list)
   const token = localStorage.getItem('token')
   const dispatch = useDispatch()
 
@@ -46,14 +46,14 @@ const HandleReservation = () => {
                   : 'Non trovato!'}
               </Col>
               <Col sm={3} lg={3}>
-                <Button
-                  className="m-2"
-                  style={{ width: '100px' }}
-                  //   onClick={() => handleShow(reservation.id)}
-                  //   disabled={show && selected !== reservation.id}
+                <Link
+                  to={`/handlereservation/${reservation.id}`}
+                  className="text-light text-decoration-none"
                 >
-                  Dettagli
-                </Button>
+                  <Button className="m-2" style={{ width: '100px' }}>
+                    Dettagli
+                  </Button>
+                </Link>
               </Col>
             </Row>
           )
