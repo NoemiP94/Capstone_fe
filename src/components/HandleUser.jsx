@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
-import { postRegister } from '../redux/action'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUsers, postRegister } from '../redux/action'
+import { Link } from 'react-router-dom'
 
 const HandleUser = () => {
   const [register, setRegister] = useState({
@@ -11,13 +12,19 @@ const HandleUser = () => {
     password: '',
   })
   const dispatch = useDispatch()
+  const token = localStorage.getItem('token')
+  const userData = useSelector((state) => state.login.list)
+  useEffect(() => {
+    dispatch(getUsers(token))
+  }, [dispatch])
+
   return (
     <Container className="my-4">
       <Row className="my-3">
         <h3>Inserisci un nuovo amministratore</h3>
       </Row>
       <Row>
-        <Col sm={6} className="glass p-3">
+        <Col sm={6} className="glass p-3 w-100">
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>Nome</Form.Label>
@@ -83,6 +90,23 @@ const HandleUser = () => {
             </Button>
           </Form>
         </Col>
+      </Row>
+      <Row className="my-4 flex-column">
+        {userData &&
+          userData.map((user, index) => {
+            return (
+              <div key={index} className="glass my-2 w-50 p-2">
+                <Col>Nome: {user.name}</Col>
+                <Col>Cognome: {user.surname}</Col>
+                <Col>Email: {user.email}</Col>
+              </div>
+            )
+          })}
+      </Row>
+      <Row>
+        <Link to="/admin">
+          <Button>Indietro</Button>
+        </Link>
       </Row>
     </Container>
   )
