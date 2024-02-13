@@ -1,5 +1,6 @@
 export const POST_LOGIN = 'POST_LOGIN'
 export const POST_REGISTER = 'POST_REGISTER'
+export const GET_USERS = 'GET_USERS'
 
 export const postLogin = (login) => {
   return async (dispatch) => {
@@ -52,7 +53,31 @@ export const postRegister = (register) => {
         throw new Error('The register is fail')
       }
     } catch (error) {
-      console.log(error)
+      console.log('Error', error)
+    }
+  }
+}
+
+export const getUsers = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch('http://localhost:3001/users', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (res.ok) {
+        const data = await res.json()
+        console.log(data.content)
+        dispatch({
+          type: GET_USERS,
+          payload: data.content,
+        })
+      } else {
+        throw new Error('List of users is fail!')
+      }
+    } catch (error) {
+      console.log('Error', error)
     }
   }
 }
