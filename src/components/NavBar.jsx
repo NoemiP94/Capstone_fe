@@ -3,6 +3,8 @@ import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
 
 const NavBar = () => {
+  const role = localStorage.getItem('role')
+  const isLogged = localStorage.getItem('isLogged') === true
   return (
     <Navbar
       fluid
@@ -32,11 +34,13 @@ const NavBar = () => {
             <Nav.Link href="#info">Contatti</Nav.Link>
 
             <Col>
-              <Nav.Link>
-                <Link to="/admin" className="text-decoration-none">
-                  Area admin
-                </Link>
-              </Nav.Link>
+              {isLogged && role === 'ADMIN' && (
+                <Nav.Link>
+                  <Link to="/admin" className="text-decoration-none">
+                    Area admin
+                  </Link>
+                </Nav.Link>
+              )}
             </Col>
           </Nav>
         </Navbar.Collapse>

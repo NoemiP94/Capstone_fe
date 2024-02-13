@@ -1,7 +1,23 @@
 import { Button, Col, Container, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { logout } from '../redux/action'
+import { useEffect, useState } from 'react'
 
 const AreaAdmin = () => {
+  const dispatch = useDispatch()
+  const [logOut, setLogOut] = useState(false)
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    dispatch(logout())
+    setLogOut(true)
+  }
+
+  useEffect(() => {
+    if (logOut) {
+      navigate('/login')
+    }
+  }, [logOut, navigate])
   return (
     <>
       <Container className="py-5">
@@ -34,6 +50,15 @@ const AreaAdmin = () => {
               <Button className="w-25">Utenti</Button>
             </Link>
           </Col>
+        </Row>
+        <Row>
+          <Button
+            onClick={handleLogout}
+            className="my-2"
+            style={{ width: '150px' }}
+          >
+            Log out
+          </Button>
         </Row>
       </Container>
     </>

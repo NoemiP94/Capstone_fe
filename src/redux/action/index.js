@@ -1,6 +1,7 @@
 export const POST_LOGIN = 'POST_LOGIN'
 export const POST_REGISTER = 'POST_REGISTER'
 export const GET_USERS = 'GET_USERS'
+export const LOGOUT = 'LOGOUT'
 
 export const postLogin = (login) => {
   return async (dispatch) => {
@@ -21,6 +22,7 @@ export const postLogin = (login) => {
         })
         localStorage.setItem('token', data.token)
         localStorage.setItem('role', data.role)
+        localStorage.setItem('isLogged', true)
         alert("Hai effettuato l'accesso correttamente!")
       } else {
         throw new Error('Login is failed!')
@@ -76,6 +78,23 @@ export const getUsers = (token) => {
       } else {
         throw new Error('List of users is fail!')
       }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
+}
+
+export const logout = () => {
+  return async (dispatch) => {
+    try {
+      localStorage.removeItem('token')
+      localStorage.removeItem('role')
+      localStorage.removeItem('isLogged')
+      dispatch({
+        type: POST_LOGIN,
+        payload: { token: '', role: '' },
+      })
+      alert('Hai effettuato il logout con successo!')
     } catch (error) {
       console.log('Error', error)
     }
