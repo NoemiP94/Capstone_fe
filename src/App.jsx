@@ -14,6 +14,7 @@ import HandleBlog from './components/HandleBlog'
 import HandleVisit from './components/HandleVisit'
 import HandleReservation from './components/HandleReservation'
 import ReservationDetail from './components/ReservationDetail'
+import HandleUser from './components/HandleUser'
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             path="/handlereservation/:id"
             element={<ReservationDetail />}
           />
+          <Route path="/user" element={<HandleUser />} />
         </Routes>
         <Footer />
       </Container>

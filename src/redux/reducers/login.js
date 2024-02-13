@@ -1,8 +1,9 @@
-import { POST_LOGIN } from '../action'
+import { POST_LOGIN, POST_REGISTER } from '../action'
 
 const initialState = {
   token: '',
   role: '',
+  content: null,
 }
 
 const loginReducer = (state = initialState, action) => {
@@ -12,6 +13,11 @@ const loginReducer = (state = initialState, action) => {
         ...state,
         token: action.payload.token,
         role: action.payload.role,
+      }
+    case POST_REGISTER:
+      return {
+        ...state,
+        content: action.payload,
       }
     default:
       return state

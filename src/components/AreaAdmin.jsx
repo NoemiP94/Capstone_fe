@@ -23,14 +23,16 @@ const AreaAdmin = () => {
           </Col>
           <Col className="my-3">
             <Link
-              to={'/handlereservation'}
+              to="/handlereservation"
               className="text-light text-decoration-none"
             >
               <Button className="w-25">Prenotazioni</Button>
             </Link>
           </Col>
           <Col className="my-3">
-            <Button className="w-25">Utenti</Button>
+            <Link to="/user" className="text-light text-decoration-none">
+              <Button className="w-25">Utenti</Button>
+            </Link>
           </Col>
         </Row>
       </Container>
