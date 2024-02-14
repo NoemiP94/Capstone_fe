@@ -36,7 +36,10 @@ const HandleVisit = () => {
   const handleDate = (e) => {
     const selected = new Date(e.target.value)
     if (!isNaN(selected)) {
-      const formatted = selected.toISOString().slice(0, 16)
+      const localDate = new Date(
+        selected.getTime() - selected.getTimezoneOffset() * 60000
+      )
+      const formatted = localDate.toISOString().slice(0, 16)
       setVisit({
         ...visit,
         date: formatted,
