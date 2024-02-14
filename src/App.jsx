@@ -17,6 +17,7 @@ import ReservationDetail from './components/ReservationDetail'
 import HandleUser from './components/HandleUser'
 import Homepage from './components/Homepage'
 import History from './components/History'
+import Info from './components/Info'
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/user" element={<HandleUser />} />
           <Route path="/" element={<Homepage />} />
           <Route path="/history" element={<History />} />
+          <Route path="/info" element={<Info />} />
         </Routes>
         <Footer />
       </Container>

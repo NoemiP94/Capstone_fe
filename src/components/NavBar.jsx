@@ -43,7 +43,11 @@ const NavBar = () => {
                 Prenotazioni
               </Link>
             </Nav.Link>
-            <Nav.Link href="#info">Contatti</Nav.Link>
+            <Nav.Link>
+              <Link to="/info" className="text-decoration-none">
+                Info
+              </Link>
+            </Nav.Link>
 
             <Col>
               {isLogged && role === 'ADMIN' && (
