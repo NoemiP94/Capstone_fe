@@ -38,4 +38,14 @@ p{
   border-top: 2px solid#B5964D !important;
 }
 
+h1{
+  font-size:65px !important;
+}
+
+.heroimage{
+  display:flex!important;
+  width: 120% !important;
+}
+
+
 
