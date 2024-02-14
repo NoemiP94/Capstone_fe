@@ -28,7 +28,11 @@ const NavBar = () => {
                 Home
               </Link>
             </Nav.Link>
-            <Nav.Link href="#link">Storia</Nav.Link>
+            <Nav.Link>
+              <Link to="/history" className="text-decoration-none">
+                Storia
+              </Link>
+            </Nav.Link>
             <Nav.Link>
               <Link to="/blog" className="text-decoration-none">
                 Blog
