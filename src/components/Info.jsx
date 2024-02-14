@@ -9,10 +9,10 @@ import { Link } from 'react-router-dom'
 const Info = () => {
   return (
     <Container className="h-100">
-      <Row className="flex-column">
+      <Row className="flex-column my-5">
         <h2>Informazioni utili</h2>
         <Col>
-          <Row className="flex-column">
+          <Row className="flex-column my-4">
             <h4>I nostri social e contatti</h4>
             <Col className="d-flex align-items-center">
               <div>
@@ -71,7 +71,19 @@ const Info = () => {
             </Col>
           </Row>
         </Col>
-        {/* <Col>orari e ticket</Col>
+        <Col className="my-4">
+          <h4>Orari di apertura e ticket</h4>
+          <p className="mt-3 text-center">
+            Il sito minerario di Su Zurfuru col Museo della Memoria Mineraria
+            apre escusivamente su prenotazione tutti i giorni (sabato , domenica
+            e festivi compresi) dalle 09.30 alle 18.00 esclusivamente su
+            prenotazione. Per tutte le info e prenotazioni cel. 3400001995. In
+            caso di mancata risposta inviare messaggio Whatsapp, vi
+            ricontatteremo appena possibile.
+          </p>
+          <p className="text-center">Il ticket d'ingresso è gratuito</p>
+        </Col>
+        {/*
         <Col>mappa</Col>
         <Col>diventa socio</Col> */}
       </Row>
