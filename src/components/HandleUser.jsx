@@ -19,7 +19,7 @@ const HandleUser = () => {
   }, [dispatch])
 
   return (
-    <Container className="my-4">
+    <Container className="my-4 h-100">
       <Row className="my-3">
         <h3>Inserisci un nuovo amministratore</h3>
       </Row>

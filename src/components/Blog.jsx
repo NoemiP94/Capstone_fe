@@ -11,7 +11,7 @@ const Blog = () => {
     dispatch(getBlogpost())
   }, [dispatch])
   return (
-    <Container bg="bg-black" className="my-3 mx-3 w-100 ">
+    <Container bg="bg-black" className="my-3 mx-3 w-100 h-100 ">
       <h1>Su Zurfuru blog</h1>
       <Row xs={1} md={2} className="g-4 mt-3 ">
         {blogData &&

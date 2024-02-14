@@ -15,6 +15,7 @@ import HandleVisit from './components/HandleVisit'
 import HandleReservation from './components/HandleReservation'
 import ReservationDetail from './components/ReservationDetail'
 import HandleUser from './components/HandleUser'
+import Homepage from './components/Homepage'
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             element={<ReservationDetail />}
           />
           <Route path="/user" element={<HandleUser />} />
+          <Route path="/" element={<Homepage />} />
         </Routes>
         <Footer />
       </Container>

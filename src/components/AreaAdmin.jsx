@@ -20,7 +20,7 @@ const AreaAdmin = () => {
   }, [logOut, navigate])
   return (
     <>
-      <Container className="py-5">
+      <Container className="py-5 vh-100">
         <Row>
           <h2>Benvenuto nell'Area Admin</h2>
           <p>Da qui potrai gestire le funzionalità dell'applicazione</p>

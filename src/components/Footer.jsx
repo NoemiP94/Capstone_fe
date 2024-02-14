@@ -3,7 +3,7 @@ import { Facebook, Instagram } from 'react-bootstrap-icons'
 
 const Footer = () => {
   return (
-    <Container fluid className="footer">
+    <Container fluid className="footer bg-black mt-3">
       <Row className="flex-column mb-3">
         <Col className="d-flex justify-content-center my-3">
           <a href="https://www.instagram.com/su_zurfuru_mine/">

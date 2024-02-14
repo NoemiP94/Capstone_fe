@@ -80,7 +80,7 @@ const HandleVisit = () => {
   }
 
   return (
-    <Container className="my-4">
+    <Container className="my-4 h-100">
       <Row className="flex-column">
         <Col>
           <h3>Inserisci i dati per creare una nuova visita:</h3>

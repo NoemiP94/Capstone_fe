@@ -4,9 +4,13 @@ body{
   font-family: 'Montserrat', sans-serif;
   background-color: black;
   color:#B5964D !important;
+  height:100vh !important
   
 }
 
+#root{
+height:100vh
+}
 button{
   background-color: #B5964D !important;
   border-color: #B5964D !important;

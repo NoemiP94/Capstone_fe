@@ -25,7 +25,7 @@ const HandleReservation = () => {
     }
   }
   return (
-    <Container>
+    <Container className="vh-100">
       <Row className="my-3">
         <h3>Lista delle prenotazioni:</h3>
       </Row>

@@ -35,7 +35,7 @@ const ReservationDetail = () => {
   }
 
   return (
-    <Container className="my-4">
+    <Container className="my-4 h-100">
       <Row>
         <h3>Dettagli della prenotazione:</h3>
       </Row>
