@@ -22,7 +22,7 @@ import Info from './components/Info'
 function App() {
   return (
     <BrowserRouter>
-      <Container fluid className="px-0 position-relative">
+      <Container fluid className="px-0 position-relative h-100">
         <NavBar />
         <Routes>
           <Route path="/blog" element={<Blog />} />

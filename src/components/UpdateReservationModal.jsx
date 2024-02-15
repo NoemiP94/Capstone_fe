@@ -47,7 +47,13 @@ const UpdateReservationModal = ({
 
   return (
     <>
-      <Modal show={true} onHide={handleClose}>
+      <Modal
+        show={true}
+        onHide={handleClose}
+        className="glass"
+        data-bs-theme="dark"
+        bg="dark"
+      >
         <Modal.Header>
           <Modal.Title>Modifica la prenotazione:</Modal.Title>
         </Modal.Header>

@@ -84,7 +84,7 @@ const HandleVisit = () => {
 
   return (
     <Container className="my-4 h-100">
-      <Row className="flex-column m-auto">
+      <Row className="flex-column">
         <Col>
           <h3>Inserisci i dati per creare una nuova visita:</h3>
         </Col>
@@ -152,8 +152,8 @@ const HandleVisit = () => {
           </Form>
         </Col>
       </Row>
-      <Row className="mt-4">
-        <h4 className="mb-3">Lista delle visite:</h4>
+      <Row className="mt-5 justify-content-center">
+        <h4 className="mb-3 text-center">Lista delle visite:</h4>
         {visitData &&
           visitData.map((visit) => (
             <Col
@@ -174,7 +174,7 @@ const HandleVisit = () => {
                 <p>Posti disponibili: {visit.maxPeople}</p>
               </div>
 
-              <div className="d-flex my-2">
+              <div className="d-flex my-3">
                 <PencilFill
                   className="text-warning mx-2"
                   onClick={() => {

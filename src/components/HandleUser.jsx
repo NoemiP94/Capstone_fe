@@ -24,8 +24,8 @@ const HandleUser = () => {
         <h3>Inserisci un nuovo amministratore</h3>
       </Row>
       <Row>
-        <Col sm={6} className="glass p-3 w-100">
-          <Form>
+        <Col sm={6} className="p-3 w-100">
+          <Form data-bs-theme="dark" bg="dark">
             <Form.Group className="mb-3">
               <Form.Label>Nome</Form.Label>
               <Form.Control
