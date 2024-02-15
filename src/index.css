@@ -153,4 +153,8 @@ h1{
     margin-right: auto;
     margin-left: auto; 
 }
+ .carousel-image {
+  height:700px;
+  object-fit: cover;
+ }
 

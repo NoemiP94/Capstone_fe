@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { getReservationDetail } from '../redux/action/reservations'
 import { format } from 'date-fns'
-import { PencilFill, Trash3Fill } from 'react-bootstrap-icons'
+import { PencilFill } from 'react-bootstrap-icons'
 import UpdateReservationModal from './UpdateReservationModal'
 
 const ReservationDetail = () => {
@@ -19,15 +19,6 @@ const ReservationDetail = () => {
     dispatch(getReservationDetail(id, token))
   }, [dispatch, id])
 
-  //   const [updatedReservation, setUpdatedReservation] = useState(null)
-  const [idReservation, setIdReservation] = useState('')
-  //   const [reservation, setReservation] = useState({
-  //     email: '',
-  //     name: '',
-  //     surname: '',
-  //     phoneNumber: '',
-  //     people: '',
-  //   })
   const [showModal, setShowModal] = useState(false)
 
   const handlePencilUpdate = () => {

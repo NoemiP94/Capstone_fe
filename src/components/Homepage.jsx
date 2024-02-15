@@ -1,20 +1,13 @@
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import mostra from '../assets/light1.jpg'
 import image2 from '../assets/laveria_museum_1.jpg'
-import hero from '../assets/hero2.jpg'
+import MyCarousel from './MyCarousel'
 
 const Homepage = () => {
   return (
     <Container className="h-100 px-0 mx-0">
       <Row style={{ width: '100vw' }}>
-        <section style={{ backgroundImage: `url(${hero})` }} className="hero">
-          <div className="hero-container">
-            <h1 className="custom-title">MUSEO DELLA</h1>
-            <h1 className="custom-title">MEMORIA</h1>
-            <h1 className="custom-title">MINERARIA</h1>
-            <h1 className="custom-title">SU ZURFURU</h1>
-          </div>
-        </section>
+        <MyCarousel />
         <Row className="custom">
           <Col className="my-5">
             <figure className="text-center">
