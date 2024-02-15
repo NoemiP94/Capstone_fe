@@ -84,7 +84,7 @@ const HandleVisit = () => {
 
   return (
     <Container className="my-4 h-100">
-      <Row className="flex-column">
+      <Row className="flex-column m-auto">
         <Col>
           <h3>Inserisci i dati per creare una nuova visita:</h3>
         </Col>
@@ -156,8 +156,14 @@ const HandleVisit = () => {
         <h4 className="mb-3">Lista delle visite:</h4>
         {visitData &&
           visitData.map((visit) => (
-            <Col key={visit.id} sm={12} md={5} lg={3} className="mb-2">
-              <Card className="glass p-2">
+            <Col
+              key={visit.id}
+              sm={12}
+              md={5}
+              lg={3}
+              className="m-2 glass w-50"
+            >
+              <div className=" p-2">
                 <p className="text-light my-2">
                   Descrizione: {visit.description}
                 </p>
@@ -166,22 +172,22 @@ const HandleVisit = () => {
                   Data e ora: {format(new Date(visit.date), 'dd/MM/yyyy HH:mm')}
                 </p>
                 <p>Posti disponibili: {visit.maxPeople}</p>
+              </div>
 
-                <div className="d-flex my-2">
-                  <PencilFill
-                    className="text-warning mx-2"
-                    onClick={() => {
-                      handlePencilUpdate(visit)
-                    }}
-                  />
-                  <Trash3Fill
-                    className="text-danger mx-2"
-                    onClick={() => {
-                      handleDelete(visit)
-                    }}
-                  />
-                </div>
-              </Card>
+              <div className="d-flex my-2">
+                <PencilFill
+                  className="text-warning mx-2"
+                  onClick={() => {
+                    handlePencilUpdate(visit)
+                  }}
+                />
+                <Trash3Fill
+                  className="text-danger mx-2"
+                  onClick={() => {
+                    handleDelete(visit)
+                  }}
+                />
+              </div>
             </Col>
           ))}
       </Row>

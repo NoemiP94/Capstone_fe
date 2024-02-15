@@ -114,7 +114,7 @@ const HandleBlog = () => {
               <div>
                 <textarea
                   name="contenuto"
-                  cols="70"
+                  style={{ width: '90%' }}
                   rows="15"
                   value={blogpost.content}
                   onChange={(e) => {
