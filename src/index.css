@@ -37,7 +37,6 @@ p{
 
 .glass{
   user-select:none;
-  max-width: 300px;
   border: 1px solid #ffffff22;
   background-color: #282c34;
   background: linear-gradient(0deg, #212529 0%, rgba(17,0,32,.5) 100%);

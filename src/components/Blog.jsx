@@ -11,26 +11,31 @@ const Blog = () => {
     dispatch(getBlogpost())
   }, [dispatch])
   return (
-    <Container bg="bg-black" className="my-3 mx-3 w-100 h-100 ">
+    <Container bg="bg-black" className="my-3 mx-auto w-100 h-100 ">
       <h1>Su Zurfuru blog</h1>
-      <Row xs={1} md={2} className="g-4 mt-3 ">
+      <Row className="g-4 mt-3 ">
         {blogData &&
           blogData.map((blog) => (
-            <Col
-              key={blog.id}
-              blog={blog}
-              sm={12}
-              md={5}
-              lg={3}
-              className="mb-2"
-            >
-              <Card className="glass">
-                <Card.Img variant="top" src={blog.image} />
-                <Card.Body>
-                  <Card.Title className="text-light my-2">
+            <Col key={blog.id} blog={blog} className="mb-2 w-100">
+              <Row className="glass d-flex w-100 flex-column flex-md-row justify-content-md-between pe-4">
+                <Col
+                  sm={12}
+                  lg={5}
+                  xl={3}
+                  className="d-flex justify-content-center "
+                >
+                  <Card.Img
+                    variant="top"
+                    src={blog.image}
+                    style={{ width: '300px' }}
+                  />
+                </Col>
+                <Col sm={12} lg={6} xl={9} className="ps-5">
+                  <Card.Title className="text-light my-4">
                     {blog.title}
                   </Card.Title>
-                  <Button className="mt-2">
+                  <p className="text-truncate">{blog.content}</p>
+                  <Button className="my-2">
                     <Link
                       to={`/blog/${blog.id}`}
                       className="text-light text-decoration-none"
@@ -38,8 +43,8 @@ const Blog = () => {
                       Apri l'articolo
                     </Link>
                   </Button>
-                </Card.Body>
-              </Card>
+                </Col>
+              </Row>
             </Col>
           ))}
       </Row>
