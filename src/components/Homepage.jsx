@@ -9,10 +9,10 @@ const Homepage = () => {
       <Row style={{ width: '100vw' }}>
         <section style={{ backgroundImage: `url(${hero})` }} className="hero">
           <div className="hero-container">
-            <h1>Museo della</h1>
-            <h1>Memoria</h1>
-            <h1>Mineraria</h1>
-            <h1>Su Zurfuru</h1>
+            <h1 className="custom-title">MUSEO DELLA</h1>
+            <h1 className="custom-title">MEMORIA</h1>
+            <h1 className="custom-title">MINERARIA</h1>
+            <h1 className="custom-title">SU ZURFURU</h1>
           </div>
         </section>
         <Row className="custom">

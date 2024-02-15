@@ -66,6 +66,10 @@ h1{
   font-size:65px !important;
 }
 
+.custom-title{
+  font-size: 6em !important;
+}
+
 
  .hero {
   background-position: 50% 50%;
@@ -74,7 +78,7 @@ h1{
  color: white;
   backface-visibility: hidden;
 
-  height: 90vh;
+  height: 135vh;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -83,23 +87,15 @@ h1{
     background-position: 50% 0;
   }
 
-  /* &:after {
-    bottom: 0;
-    content: '';
-    left: -2000%;
-    position: absolute;
-    right: -2000%;
-    top: 0;
-    z-index: 1;
-  
-} */
 }
 .hero-container {
   box-sizing: border-box;
   height: auto;
-  padding: 30px 50px;
-  position: relative;
+  padding: 10px 50px;
+  position: absolute;
+  top: 10%;
   z-index: 2;
+  
   
   
 
