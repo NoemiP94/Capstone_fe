@@ -40,7 +40,13 @@ const ReservationModal = ({ visitId, setShow }) => {
 
   return (
     <>
-      <Modal show={showModal} onHide={handleClose}>
+      <Modal
+        show={showModal}
+        onHide={handleClose}
+        className="glass"
+        data-bs-theme="dark"
+        bg="dark"
+      >
         <Modal.Header>
           <Modal.Title>
             Compila il form (Attenzione per modificare o eliminare la
