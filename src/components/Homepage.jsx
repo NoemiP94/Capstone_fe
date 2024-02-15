@@ -23,6 +23,27 @@ const Homepage = () => {
         </Col>
       </Row>
       {/* end hero */}
+      <Row>
+        <Col className="my-4">
+          <figure className="text-center">
+            <blockquote className="blockquote">
+              <p>
+                “Più di ogni altro, forse, il minatore può rappresentare il
+                prototipo del lavoratore manuale, non solo perché il suo lavoro
+                è così esageratamente orribile, ma anche perché è così
+                virtualmente necessario e insieme così lontano dalla nostra
+                esperienza, così invisibile, per modo di dire, che siamo capaci
+                di dimenticarlo come dimentichiamo il sangue che ci scorre nelle
+                vene.“{' '}
+              </p>
+            </blockquote>
+            <figcaption className="blockquote-footer">
+              Le strade di Wigan Pier (1937) -{' '}
+              <cite title="Source Title">George Orwell</cite>
+            </figcaption>
+          </figure>
+        </Col>
+      </Row>
       <Row className="mt-5 pt-5">
         <h2>Il museo</h2>
         <p>
