@@ -17,7 +17,7 @@ const Login = () => {
     })
   }, [])
   return (
-    <Container className="w-25 my-5 vh-100">
+    <Container className="w-25 mt-5 vh-100">
       <Form className="border rounded glass p-4">
         <h4 className="my-4">Effettua l'accesso</h4>
         <Form.Group className="mb-3">

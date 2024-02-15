@@ -95,7 +95,7 @@ const HandleBlog = () => {
           <h3>Inserisci i dati per creare un nuovo articolo:</h3>
         </Col>
         <Col>
-          <Form>
+          <Form data-bs-theme="dark" bg="dark">
             <Form.Group className="mb-3 w-50">
               <Form.Label>Inserisci il titolo</Form.Label>
               <Form.Control
@@ -154,50 +154,60 @@ const HandleBlog = () => {
         <h4 className="mb-3">Lista degli articoli:</h4>
         {blogData &&
           blogData.map((blog) => (
-            <Col key={blog.id} sm={12} md={5} lg={3} className="mb-2">
-              <Card className="glass p-2">
-                <Card.Img variant="top" src={blog.image} />
-
-                <p className="text-light my-2">{blog.title}</p>
-                <p className="overflow-scroll" style={{ height: '150px' }}>
-                  {blog.content}
-                </p>
-                <p>{blog.date}</p>
-                <Form.Control
-                  className="mt-3"
-                  type="file"
-                  onChange={(e) => {
-                    const file = e.target.files[0]
-                    if (file) {
-                      const formData = new FormData()
-                      formData.append('image', file)
-                      setFormImg(formData)
-                    }
-                  }}
-                />
-                <Button
-                  className="my-2"
-                  onClick={() => {
-                    handleUploadImage(blog.id)
-                  }}
+            <Col key={blog.id} sm={12} md={5} lg={3} className="mb-3 w-100">
+              <Row className="glass d-flex w-100 flex-column flex-md-row justify-content-md-between pe-4">
+                <Col
+                  sm={12}
+                  lg={5}
+                  xl={3}
+                  className="d-flex justify-content-center "
                 >
-                  Inserisci immagine
-                </Button>
-                <div className="d-flex my-2">
-                  <PencilFill
-                    className="text-warning mx-2"
-                    onClick={() => {
-                      handlePencilUpdate(blog)
+                  <Card.Img
+                    variant="top"
+                    src={blog.image}
+                    style={{ width: '300px' }}
+                  />
+                </Col>
+                <Col sm={12} lg={6} xl={9} className="ps-5">
+                  <p className="text-light my-2">{blog.title}</p>
+                  <p className="text-truncate">{blog.content}</p>
+                  <p>{blog.date}</p>
+                  <Form.Control
+                    className="mt-3"
+                    type="file"
+                    onChange={(e) => {
+                      const file = e.target.files[0]
+                      if (file) {
+                        const formData = new FormData()
+                        formData.append('image', file)
+                        setFormImg(formData)
+                      }
                     }}
                   />
-                  <Trash3Fill
-                    className="text-danger mx-2"
+                  <Button
+                    className="my-2"
                     onClick={() => {
-                      handleDelete(blog)
+                      handleUploadImage(blog.id)
                     }}
-                  />
-                </div>
-              </Card>
+                  >
+                    Inserisci immagine
+                  </Button>
+                  <div className="d-flex my-3">
+                    <PencilFill
+                      className="text-warning mx-2"
+                      onClick={() => {
+                        handlePencilUpdate(blog)
+                      }}
+                    />
+                    <Trash3Fill
+                      className="text-danger mx-2"
+                      onClick={() => {
+                        handleDelete(blog)
+                      }}
+                    />
+                  </div>
+                </Col>
+              </Row>
             </Col>
           ))}
       </Row>
