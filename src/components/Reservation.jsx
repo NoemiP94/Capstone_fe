@@ -20,7 +20,7 @@ const Reservation = () => {
   }, [dispatch])
 
   return (
-    <Container className="vh-100">
+    <Container className="h-100">
       <Row className="my-3">
         <h1>Prenota la tua visita guidata</h1>
         <p>

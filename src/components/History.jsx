@@ -1,18 +1,20 @@
 import { Col, Container, Image, Row } from 'react-bootstrap'
-import image2 from '../assets/laveria_museum_1.jpg'
-import logo from '../assets/logo.png'
+import old from '../assets/quadro_home.jpg'
+import logo from '../assets/logo_certificato.png'
+import mineral from '../assets/mineral.jpg'
+import houses from '../assets/houses.jpg'
 
 const History = () => {
   return (
     <Container className="h-100">
       <Row className="flex-column mt-4">
-        <h2>Cenni storici</h2>
+        <h2 className="mt-3">Cenni storici</h2>
         <Col>
           <Row className="flex-column my-3">
             <Col className="d-flex justify-content-center my-3">
-              <Image src={image2} className="w-50" />
+              <Image src={old} className="w-50 image-border" />
             </Col>
-            <Col className="text-center">
+            <Col className="text-center mt-3">
               <p>
                 La miniera di su Zurfuru fu dichiarata scoperta nel 1889, e, per
                 la prima volta, data in concessione per la coltivazione di
@@ -35,9 +37,9 @@ const History = () => {
         <Col>
           <Row className="flex-column my-3">
             <Col className="d-flex justify-content-center my-3">
-              <Image src={image2} className="w-50" />
+              <Image src={houses} className="w-50 image-border" />
             </Col>
-            <Col className="text-center">
+            <Col className="text-center mt-3">
               <p>
                 La Pertusola crea anche una nuova laveria con uno straordinario
                 impianto di flottazione, tutt’ora ben conservato, e un’estesa
@@ -60,9 +62,9 @@ const History = () => {
         <Col>
           <Row className="flex-column my-3">
             <Col className="d-flex justify-content-center my-3">
-              <Image src={image2} className="w-50" />
+              <Image src={mineral} className="w-50 image-border" />
             </Col>
-            <Col className="text-center">
+            <Col className="text-center mt-3">
               <p>
                 Per un lungo periodo Su Zurfuru rimase inattiva, tranne il
                 generatore di energia elettrica e l’impianto di flottazione, e
@@ -81,10 +83,10 @@ const History = () => {
           </Row>
         </Col>
       </Row>
-      <Row className="my-5">
-        <h2>L'Associazione</h2>
+      <Row className="my-5 flex-sm-column text-center flex-xl-row">
+        <h2 className="mb-4">L'Associazione</h2>
         <Col>
-          <Image src={logo} className="w-75" />
+          <Image src={logo} className="w-75 mt-4" />
         </Col>
         <Col>
           <p>
