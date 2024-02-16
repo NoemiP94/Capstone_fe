@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlogpost } from '../redux/action/blogs'
 import { Link } from 'react-router-dom'
-import Pagination from './Pagination'
 
 const Blog = () => {
   const blogData = useSelector((state) => state.blogpost.list)
