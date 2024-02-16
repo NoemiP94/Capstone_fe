@@ -21,6 +21,7 @@ const MyCarousel = () => {
       onSelect={() => {}}
       controls={false}
       indicators={false}
+      className="ms-1 pe-0"
     >
       <Carousel.Item>
         <img
