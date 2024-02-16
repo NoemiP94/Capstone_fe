@@ -26,8 +26,24 @@ button{
   cursor: pointer!important;
 }
 
+button:hover{
+  background-color: #7B6737 !important;
+  border-color: #7B6737 !important;
+  color: white!important;
+  background-image: radial-gradient(93% 87% at 87% 89%, #7B6737 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%)!important;
+  box-shadow: inset -3px -3px 9px #7B6737, inset 0px 3px 9px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 36px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 19px 31px rgba(0, 0, 0, 0.2)!important;
+  padding: 10px 17px!important;
+  border-radius: 14px!important;
+  cursor: pointer!important;
+}
+
 a {
   color:#B5964D !important;
+}
+
+a:hover{
+  color: white!important;
+  
 }
 
 p{
@@ -119,17 +135,6 @@ h1{
   }
 }
 
-.hero-button {
-  background: rgba(255,255,255,0.8);
-  color: #44575b;
-  font-size: 24px;
-  float: left;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-top: 30px;
-  padding: 20px 90px;
-  text-decoration: none;
-}
 
 .hero-title {
   color: white;
@@ -154,12 +159,12 @@ h1{
     margin-left: auto; 
 }
  .carousel-image {
-  height:700px;
+  height:800px;
   object-fit: cover;
  }
 
 
-
+/* pagination css */
 .pagination {
   display: flex;
   border: 1px solid #fff;
@@ -176,3 +181,4 @@ h1{
   color: #fff;
   border: 1px solid #fff;
 }
+
