@@ -1,6 +1,8 @@
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import mostra from '../assets/light1.jpg'
 import image2 from '../assets/laveria_museum_1.jpg'
+import compressor from '../assets/compressore.jpg'
+import laveria from '../assets/laveria.jpg'
 import MyCarousel from './MyCarousel'
 
 const Homepage = () => {
@@ -66,7 +68,7 @@ const Homepage = () => {
                 </p>
               </Col>{' '}
               <Col sm={4}>
-                <Image src={image2} className="w-100 image-border mb-4" />
+                <Image src={compressor} className="w-100 image-border mb-4" />
               </Col>
             </Row>
             <Row className="flex-nowrap align-items-center mb-5 flex-column flex-lg-row">
@@ -102,7 +104,7 @@ const Homepage = () => {
                 </p>
               </Col>{' '}
               <Col sm={4}>
-                <Image src={image2} className="w-100 image-border mb-4" />
+                <Image src={laveria} className="w-100 image-border mb-4" />
               </Col>
             </Row>
           </Col>
