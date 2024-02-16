@@ -1,6 +1,6 @@
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import mostra from '../assets/light1.jpg'
-import image2 from '../assets/laveria_museum_1.jpg'
+import generator from '../assets/generatore.jpg'
 import compressor from '../assets/compressore.jpg'
 import laveria from '../assets/laveria.jpg'
 import MyCarousel from './MyCarousel'
@@ -73,7 +73,7 @@ const Homepage = () => {
             </Row>
             <Row className="flex-nowrap align-items-center mb-5 flex-column flex-lg-row">
               <Col sm={4}>
-                <Image src={image2} className="w-100 image-border mb-4" />
+                <Image src={generator} className="w-100 image-border mb-4" />
               </Col>
               <Col sm={8} className="text-center">
                 {' '}

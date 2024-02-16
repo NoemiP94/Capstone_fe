@@ -19,7 +19,13 @@ export const getBlogpost = () => {
         console.log(data.content)
         dispatch({
           type: GET_BLOGPOST,
-          payload: data.content,
+          payload: {
+            content: data.content,
+            totalPages: data.totalPages,
+            currentPage: data.number + 1,
+            postsPerPage: data.size,
+            totalPosts: data.totalElements,
+          },
         })
         console.log('List of blogposts has been load correctly!')
       } else {

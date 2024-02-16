@@ -13,6 +13,10 @@ const initialState = {
   postImage: null,
   content: null,
   update: '',
+  totalPages: 0,
+  currentPage: 1,
+  postsPerPage: 12,
+  totalPosts: 0,
 }
 
 const blogpostReducer = (state = initialState, action) => {
@@ -20,7 +24,11 @@ const blogpostReducer = (state = initialState, action) => {
     case GET_BLOGPOST:
       return {
         ...state,
-        list: action.payload,
+        list: action.payload.content,
+        totalPages: action.payload.totalPages,
+        currentPage: action.payload.currentPage,
+        postsPerPage: action.payload.postsPerPage,
+        totalPosts: action.payload.totalPosts,
       }
     case GET_BLOG_DETAIL:
       return {

@@ -1,22 +1,25 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlogpost } from '../redux/action/blogs'
 import { Link } from 'react-router-dom'
+import Pagination from './Pagination'
 
 const Blog = () => {
   const blogData = useSelector((state) => state.blogpost.list)
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getBlogpost())
   }, [dispatch])
+
   return (
     <Container bg="bg-black" className="my-3 mx-auto w-100 h-100 ">
       <h1>Su Zurfuru blog</h1>
       <Row className="g-4 mt-3 ">
         {blogData &&
           blogData.map((blog) => (
-            <Col key={blog.id} blog={blog} className="mb-2 w-100">
+            <Col key={blog.id} className="mb-2 w-100">
               <Row className="glass d-flex w-100 flex-column flex-md-row justify-content-md-between pe-4">
                 <Col
                   sm={12}
