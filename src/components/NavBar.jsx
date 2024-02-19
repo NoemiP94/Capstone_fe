@@ -1,10 +1,21 @@
-import { Col, Container, Image, Nav, Navbar } from 'react-bootstrap'
+import { Container, Image, Nav, Navbar } from 'react-bootstrap'
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
+import { Fragment, useEffect, useState } from 'react'
 
 const NavBar = () => {
-  const role = localStorage.getItem('role')
-  const isLogged = localStorage.getItem('isLogged') === true
+  const [isLogged, setIsLogged] = useState(false)
+  const [role, setRole] = useState('')
+
+  useEffect(() => {
+    const logged = localStorage.getItem('isLogged') === 'true'
+    setIsLogged(logged)
+    console.log('isLogged:', isLogged)
+    setRole(localStorage.getItem('role') || '')
+
+    console.log('role:', role)
+  }, [])
+
   return (
     <Navbar
       fluid
@@ -49,15 +60,15 @@ const NavBar = () => {
               </Link>
             </Nav.Link>
 
-            <Col>
-              {isLogged && role === 'ADMIN' && (
+            {isLogged && role === 'ADMIN' && (
+              <Fragment>
                 <Nav.Link>
                   <Link to="/admin" className="text-decoration-none">
                     Area admin
                   </Link>
                 </Nav.Link>
-              )}
-            </Col>
+              </Fragment>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

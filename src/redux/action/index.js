@@ -13,6 +13,7 @@ export const postLogin = (login) => {
           'Content-Type': 'application/json',
         },
       })
+
       if (res.ok) {
         const data = await res.json()
         console.log(data)
@@ -24,11 +25,15 @@ export const postLogin = (login) => {
         localStorage.setItem('role', data.role)
         localStorage.setItem('isLogged', true)
         alert("Hai effettuato l'accesso correttamente!")
+        return data
       } else {
+        localStorage.setItem('isLogged', false)
         throw new Error('Login is failed!')
       }
     } catch (error) {
       console.log('Error', error)
+      alert('Errore durante il login! Controlla le credenziali e riprova.')
+      throw error
     }
   }
 }

@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { postLogin } from '../redux/action'
-import { Link } from 'react-router-dom'
+
+import { Navigate } from 'react-router-dom'
 
 const Login = () => {
   const [login, setLogin] = useState({
@@ -10,12 +11,28 @@ const Login = () => {
     password: '',
   })
   const dispatch = useDispatch()
+  const [redirectAdmin, setRedirectAdmin] = useState(false)
 
-  useEffect(() => {
-    setLogin({
-      ...login,
-    })
-  }, [])
+  //gestione login
+  const handleLogin = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await dispatch(postLogin(login))
+      console.log('Login response:', response)
+      if (response.token) {
+        setRedirectAdmin(true)
+      } else {
+        alert('Credenziali errate!')
+      }
+    } catch (error) {
+      console.error('Errore durante il login:', error)
+      alert('errore durante il login!')
+    }
+  }
+  //se le credenziali sono giuste va ad /admin
+  if (redirectAdmin) {
+    return <Navigate to="/admin" replace />
+  }
   return (
     <Container className="w-25 mt-5 vh-100">
       <Form className="border rounded glass p-4">
@@ -48,16 +65,8 @@ const Login = () => {
           />
         </Form.Group>
 
-        <Button
-          type="submit"
-          onClick={(e) => {
-            e.preventDefault()
-            dispatch(postLogin(login))
-          }}
-        >
-          <Link to="/admin" className="text-light text-decoration-none">
-            Invia
-          </Link>
+        <Button type="submit" onClick={handleLogin}>
+          Invia
         </Button>
       </Form>
     </Container>
