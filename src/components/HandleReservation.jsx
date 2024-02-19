@@ -10,6 +10,7 @@ const HandleReservation = () => {
   const reservationData = useSelector((state) => state.reservation.list)
   const token = localStorage.getItem('token')
   const dispatch = useDispatch()
+  const spinner = useSelector((state) => state.reservation.isLoading)
 
   useEffect(() => {
     dispatch(getReservation(token))
@@ -28,6 +29,11 @@ const HandleReservation = () => {
     <Container className="vh-100">
       <Row className="my-3">
         <h3>Lista delle prenotazioni:</h3>
+        {spinner && (
+          <Col className="d-flex justify-content-center my-5">
+            <div className="colorful"></div>
+          </Col>
+        )}
       </Row>
       {reservationData &&
         reservationData.map((reservation) => {

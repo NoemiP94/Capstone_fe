@@ -14,6 +14,7 @@ const ReservationDetail = () => {
   )
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
+  const spinner = useSelector((state) => state.reservation.isLoading)
 
   useEffect(() => {
     dispatch(getReservationDetail(id, token))
@@ -29,6 +30,11 @@ const ReservationDetail = () => {
     <Container className="my-4 vh-100">
       <Row>
         <h3>Dettagli della prenotazione:</h3>
+        {spinner && (
+          <Col className="d-flex justify-content-center my-5">
+            <div className="colorful"></div>
+          </Col>
+        )}
       </Row>
       <Row className="glass p-3 mt-3 flex-column">
         {singleReservation && (

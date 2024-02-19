@@ -180,14 +180,15 @@ h1{
   background: black;
   color: #fff;
 }
+
+
 /* 
 SPINNER
 
-<div class="colorful"></div>
+*/
 
-<style>
 .colorful {
-   width: 44.8px;
+   width: 60.8px;
    height: 44.8px;
    border-radius: 50%;
    margin-top: -33.6px;
@@ -217,4 +218,3 @@ SPINNER
       transform: rotate(360deg);
    }
 }
-</style> */

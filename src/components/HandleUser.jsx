@@ -14,6 +14,7 @@ const HandleUser = () => {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
   const userData = useSelector((state) => state.login.list)
+  const spinner = useSelector((state) => state.login.isLoading)
   useEffect(() => {
     dispatch(getUsers(token))
   }, [dispatch])
@@ -91,6 +92,11 @@ const HandleUser = () => {
           </Form>
         </Col>
       </Row>
+      {spinner && (
+        <Col className="d-flex justify-content-center my-5">
+          <div className="colorful"></div>
+        </Col>
+      )}
       <Row className="my-4 flex-column">
         {userData &&
           userData.map((user, index) => {

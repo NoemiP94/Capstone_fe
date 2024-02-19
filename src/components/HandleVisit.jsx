@@ -24,6 +24,7 @@ const HandleVisit = () => {
   useEffect(() => {
     dispatch(getVisit())
   }, [dispatch])
+  const spinner = useSelector((state) => state.visit.isLoading)
 
   const handleDate = (e) => {
     const selected = new Date(e.target.value)
@@ -146,6 +147,11 @@ const HandleVisit = () => {
       </Row>
       <Row className="mt-5 justify-content-center">
         <h4 className="mb-3 text-center">Lista delle visite:</h4>
+        {spinner && (
+          <Col className="d-flex justify-content-center my-5">
+            <div className="colorful"></div>
+          </Col>
+        )}
         {visitData &&
           visitData.map((visit) => (
             <Col

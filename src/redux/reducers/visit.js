@@ -9,6 +9,7 @@ const initialState = {
   list: [],
   content: null,
   update: '',
+  isLoading: true,
 }
 
 const visitReducer = (state = initialState, action) => {
@@ -16,6 +17,7 @@ const visitReducer = (state = initialState, action) => {
     case GET_VISIT:
       return {
         ...state,
+        isLoading: false,
         list: action.payload,
       }
     case POST_VISIT:

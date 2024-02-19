@@ -8,6 +8,7 @@ const BlogDetail = () => {
   const { id } = useParams()
   const singlePost = useSelector((state) => state.blogpost.singlePost)
   const dispatch = useDispatch()
+  const spinner = useSelector((state) => state.blogpost.isLoading)
 
   useEffect(() => {
     dispatch(getBlogDetail(id))
@@ -15,6 +16,11 @@ const BlogDetail = () => {
 
   return (
     <Container className="border rounded p-4 glass mt-5">
+      {spinner && (
+        <Col className="d-flex justify-content-center my-5">
+          <div className="colorful"></div>
+        </Col>
+      )}
       {singlePost && (
         <>
           <Row className="my-3">

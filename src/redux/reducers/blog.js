@@ -13,6 +13,7 @@ const initialState = {
   postImage: null,
   content: null,
   update: '',
+  isLoading: true,
 }
 
 const blogpostReducer = (state = initialState, action) => {
@@ -20,11 +21,13 @@ const blogpostReducer = (state = initialState, action) => {
     case GET_BLOGPOST:
       return {
         ...state,
+        isLoading: false,
         list: action.payload,
       }
     case GET_BLOG_DETAIL:
       return {
         ...state,
+        isLoading: false,
         singlePost: action.payload,
       }
     case GET_POST_IMAGE:

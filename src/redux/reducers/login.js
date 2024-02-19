@@ -5,6 +5,7 @@ const initialState = {
   role: '',
   content: null,
   list: [],
+  isLoading: true,
 }
 
 const loginReducer = (state = initialState, action) => {
@@ -23,6 +24,7 @@ const loginReducer = (state = initialState, action) => {
     case GET_USERS:
       return {
         ...state,
+        isLoading: false,
         list: action.payload,
       }
     case LOGOUT:

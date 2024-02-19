@@ -28,6 +28,7 @@ const HandleBlog = () => {
   const [formImg, setFormImg] = useState(null)
   const [updatedBlogpost, setUpdatedBlogpost] = useState(null)
   const [idBlogpost, setIdBlogpost] = useState('')
+  const spinner = useSelector((state) => state.blogpost.isLoading)
 
   const handleUploadImage = async (blogId) => {
     try {
@@ -152,6 +153,11 @@ const HandleBlog = () => {
       </Row>
       <Row className="mt-4">
         <h4 className="mb-3">Lista degli articoli:</h4>
+        {spinner && (
+          <Col className="d-flex justify-content-center my-5">
+            <div className="colorful"></div>
+          </Col>
+        )}
         {blogData &&
           blogData.map((blog) => (
             <Col key={blog.id} sm={12} md={5} lg={3} className="mb-3 w-100">

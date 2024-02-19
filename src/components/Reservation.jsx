@@ -7,6 +7,7 @@ import ReservationModal from './ReservationModal'
 
 const Reservation = () => {
   const visitData = useSelector((state) => state.visit.list)
+  const spinner = useSelector((state) => state.visit.isLoading)
   const dispatch = useDispatch()
   const [show, setShow] = useState(false)
   const [selected, setSelected] = useState(null)
@@ -27,6 +28,11 @@ const Reservation = () => {
           Scegli la visita che desideri tra quelle disponibili e clicca sul
           pulsante Prenota
         </p>
+        {spinner && (
+          <Col className="d-flex justify-content-center my-5">
+            <div className="colorful"></div>
+          </Col>
+        )}
       </Row>
       {visitData &&
         visitData.map((visit) => (

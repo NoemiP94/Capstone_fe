@@ -11,6 +11,7 @@ const initialState = {
   list: [],
   singleReservation: null,
   update: '',
+  isLoading: true,
 }
 
 const reservationReducer = (state = initialState, action) => {
@@ -23,11 +24,13 @@ const reservationReducer = (state = initialState, action) => {
     case GET_RESERVATION:
       return {
         ...state,
+        isLoading: false,
         list: action.payload,
       }
     case GET_RESERVATION_DETAIL:
       return {
         ...state,
+        isLoading: false,
         singleReservation: action.payload,
       }
     case PUT_RESERVATION:
