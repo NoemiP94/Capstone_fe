@@ -18,6 +18,7 @@ import HandleUser from './components/HandleUser'
 import Homepage from './components/Homepage'
 import History from './components/History'
 import Info from './components/Info'
+import NotFound from './components/NotFound'
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/history" element={<History />} />
           <Route path="/info" element={<Info />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </Container>
