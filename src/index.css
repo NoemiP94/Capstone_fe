@@ -7,7 +7,8 @@ body{
   color:#B5964D !important;
   height:100% !important;
  margin: 0 !important;
- padding: 0 !important
+ padding: 0 !important;
+ overflow-x: hidden;
 
   
 }
@@ -257,3 +258,42 @@ SPINNER
 #bb:hover{
 	background-color: #B5964D;
 }
+
+
+/* ANIMATIONS */
+
+.fade-in {
+	-webkit-animation: fade-in 4s linear both;
+	        animation: fade-in 4s linear both;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.home-fadein{
+  animation : home-fadein 2s ease forwards;
+  opacity :0;
+}
+
+@keyframes home-fadein {
+  from {
+    opacity: 0 
+  } to {
+    opacity: 1
+  }
+}
+

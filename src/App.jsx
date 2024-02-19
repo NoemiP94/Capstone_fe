@@ -19,8 +19,28 @@ import Homepage from './components/Homepage'
 import History from './components/History'
 import Info from './components/Info'
 import NotFound from './components/NotFound'
+import { useEffect, useState } from 'react'
+import Open from './components/Open'
 
 function App() {
+  const [showOpen, setShowOpen] = useState(true)
+  const [showHome, setShowHome] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowOpen(false)
+    }, 8000) // nasconde Open dopo 12 secondi
+
+    const homeTimer = setTimeout(() => {
+      setShowHome(true)
+    })
+
+    return () => {
+      clearTimeout(timer)
+      clearTimeout(homeTimer)
+    } //pulisce il timer dopo che  il componente viene smontato
+  }, [])
+
   return (
     <BrowserRouter>
       <Container fluid className="px-0 position-relative h-100">
@@ -39,7 +59,8 @@ function App() {
             element={<ReservationDetail />}
           />
           <Route path="/user" element={<HandleUser />} />
-          <Route path="/" element={<Homepage />} />
+          {showOpen && <Route path="/" element={<Open />} />}
+          {showHome && <Route path="/" element={<Homepage />} />}
           <Route path="/history" element={<History />} />
           <Route path="/info" element={<Info />} />
           <Route path="*" element={<NotFound />} />

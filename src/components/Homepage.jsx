@@ -7,7 +7,7 @@ import MyCarousel from './MyCarousel'
 
 const Homepage = () => {
   return (
-    <Container className="h-100 px-0 mx-0">
+    <Container className="h-100 px-0 mx-0 home-fadein">
       <Row style={{ width: '100vw' }}>
         <MyCarousel />
         <Row className="custom">
