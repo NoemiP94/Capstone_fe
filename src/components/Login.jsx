@@ -3,7 +3,7 @@ import { Button, Container, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { postLogin } from '../redux/action'
 
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const [login, setLogin] = useState({
@@ -11,6 +11,7 @@ const Login = () => {
     password: '',
   })
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [redirectAdmin, setRedirectAdmin] = useState(false)
 
   //gestione login
@@ -20,7 +21,8 @@ const Login = () => {
       const response = await dispatch(postLogin(login))
       console.log('Login response:', response)
       if (response.token) {
-        setRedirectAdmin(true)
+        //setRedirectAdmin(true)
+        navigate('/admin', { replace: true })
       } else {
         alert('Credenziali errate!')
       }
@@ -28,10 +30,6 @@ const Login = () => {
       console.error('Errore durante il login:', error)
       alert('errore durante il login!')
     }
-  }
-  //se le credenziali sono giuste va ad /admin
-  if (redirectAdmin) {
-    return <Navigate to="/admin" replace />
   }
   return (
     <Container className="w-25 mt-5 vh-100">

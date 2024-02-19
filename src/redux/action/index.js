@@ -27,7 +27,7 @@ export const postLogin = (login) => {
         alert("Hai effettuato l'accesso correttamente!")
         return data
       } else {
-        localStorage.setItem('isLogged', false)
+        // localStorage.setItem('isLogged', false)
         throw new Error('Login is failed!')
       }
     } catch (error) {

@@ -1,19 +1,20 @@
 import { Container, Image, Nav, Navbar } from 'react-bootstrap'
 import logo from '../assets/logo.png'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Fragment, useEffect, useState } from 'react'
 
 const NavBar = () => {
   const [isLogged, setIsLogged] = useState(false)
   const [role, setRole] = useState('')
+  const location = useLocation()
 
   useEffect(() => {
     const logged = localStorage.getItem('isLogged') === 'true'
     setIsLogged(logged)
-    console.log('isLogged:', isLogged)
-    setRole(localStorage.getItem('role') || '')
-
-    console.log('role:', role)
+    console.log('isLogged:', logged)
+    const roleFromLS = localStorage.getItem('role') || ''
+    setRole(roleFromLS)
+    console.log('role:', roleFromLS)
   }, [])
 
   return (
@@ -60,15 +61,22 @@ const NavBar = () => {
               </Link>
             </Nav.Link>
 
-            {isLogged && role === 'ADMIN' && (
-              <Fragment>
-                <Nav.Link>
-                  <Link to="/admin" className="text-decoration-none">
-                    Area admin
-                  </Link>
-                </Nav.Link>
-              </Fragment>
-            )}
+            {isLogged &&
+              role === 'ADMIN' &&
+              (location.pathname === '/admin' ||
+                location.pathname === '/handleblog' ||
+                location.pathname === '/handlevisit' ||
+                location.pathname === '/handlereservation' ||
+                location.pathname === '/user') && (
+                <Fragment>
+                  <Nav.Link>
+                    <Link to="/admin" className="text-decoration-none">
+                      Area admin
+                    </Link>
+                  </Nav.Link>
+                  {console.log('Area admin renderizzato')}
+                </Fragment>
+              )}
           </Nav>
         </Navbar.Collapse>
       </Container>
