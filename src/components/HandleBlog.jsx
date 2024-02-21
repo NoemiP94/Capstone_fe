@@ -19,6 +19,7 @@ import {
 } from '../redux/action/blogs'
 import { PencilFill, Trash3Fill } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
+import Filter from 'bad-words'
 
 const HandleBlog = () => {
   const [blogpost, setBlogpost] = useState({
@@ -84,7 +85,7 @@ const HandleBlog = () => {
   const handleUpdate = async () => {
     try {
       await dispatch(updateBlogpost(idBlogpost, blogpost, token))
-      dispatch(getBlogpost())
+      dispatch(getBlogpost(currentPage))
 
       console.log('Modificato con successo')
     } catch (error) {
@@ -96,10 +97,20 @@ const HandleBlog = () => {
     try {
       console.log(blog.id)
       await dispatch(deleteBlogpost(blog.id, token))
-      dispatch(getBlogpost())
+      dispatch(getBlogpost(currentPage))
       console.log('Eliminato con successo')
     } catch (error) {
       console.log("Errore nell'eliminazione", error)
+    }
+  }
+
+  // control bad-words
+  const filter = new Filter({})
+  const handlePostCreation = (postContent) => {
+    if (filter.isProfane(postContent)) {
+      alert('Il testo contiene parole offensive. Si prega di modificare.')
+    } else {
+      console.log('Post creato con successo')
     }
   }
 
@@ -145,6 +156,7 @@ const HandleBlog = () => {
               type="submit"
               onClick={(e) => {
                 e.preventDefault()
+                handlePostCreation(blogpost.content)
                 dispatch(postBlogpost(blogpost, token)).then(
                   dispatch(getBlogpost())
                 )
@@ -157,6 +169,7 @@ const HandleBlog = () => {
               type="submit"
               onClick={(e) => {
                 e.preventDefault()
+                handlePostCreation(blogpost.content)
                 handleUpdate()
               }}
             >

@@ -15,7 +15,7 @@ const ReservationModal = ({ visitId, setShow }) => {
     people: '',
     visit_id: visitId,
   })
-
+  const [currentPage, setCurrentPage] = useState(0)
   const handleClose = () => {
     setShow(false), setShowModal(false)
   }
@@ -25,7 +25,7 @@ const ReservationModal = ({ visitId, setShow }) => {
     try {
       await dispatch(postReservation(newReservation)),
         setShowModal(false),
-        dispatch(getVisit())
+        dispatch(getVisit(currentPage))
     } catch (error) {
       console.log('Error', error)
     }

@@ -20,7 +20,7 @@ const HandleReservation = () => {
   const handleDelete = async (reservation) => {
     try {
       await dispatch(deleteReservation(reservation.id, token))
-      dispatch(getReservation(token))
+      dispatch(getReservation(token, currentPage))
       console.log('Eliminato con successo')
     } catch (error) {
       console.log('Error', error)

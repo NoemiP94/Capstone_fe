@@ -24,6 +24,15 @@ const HandleUser = () => {
     setCurrentPage(pageNumber)
   }
 
+  const handleSave = async () => {
+    try {
+      await dispatch(postRegister(register))
+      dispatch(getUsers(token, currentPage))
+    } catch (error) {
+      console.log("Errore nell'aggiornamento", error)
+    }
+  }
+
   return (
     <Container className="my-4 h-100">
       <Row className="my-3">
@@ -89,7 +98,7 @@ const HandleUser = () => {
               type="submit"
               onClick={(e) => {
                 e.preventDefault()
-                dispatch(postRegister(register))
+                handleSave()
               }}
             >
               Salva

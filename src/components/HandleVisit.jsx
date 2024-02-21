@@ -72,7 +72,7 @@ const HandleVisit = () => {
   const handleUpdate = async () => {
     try {
       await dispatch(updateVisit(idVisit, visit, token))
-      dispatch(getVisit())
+      dispatch(getVisit(currentPage))
       console.log('Modificato con successo!')
     } catch (error) {
       console.log("Errore nell'aggiornamento", error)
@@ -82,7 +82,7 @@ const HandleVisit = () => {
   const handleDelete = async (visit) => {
     try {
       await dispatch(deleteVisit(visit.id, token))
-      dispatch(getVisit())
+      dispatch(getVisit(currentPage))
       console.log('Eliminato con successo')
     } catch (error) {
       console.log("Errore nell'eliminazione", error)
@@ -141,7 +141,9 @@ const HandleVisit = () => {
               type="submit"
               onClick={(e) => {
                 e.preventDefault()
-                dispatch(postVisit(visit, token)).then(dispatch(getVisit()))
+                dispatch(postVisit(visit, token)).then(
+                  dispatch(getVisit(currentPage))
+                )
               }}
             >
               Crea
