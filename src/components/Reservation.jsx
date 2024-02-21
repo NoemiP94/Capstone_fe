@@ -1,4 +1,4 @@
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Pagination, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getVisit } from '../redux/action/visits'
 import { useEffect, useState } from 'react'
@@ -8,6 +8,7 @@ import ReservationModal from './ReservationModal'
 const Reservation = () => {
   const visitData = useSelector((state) => state.visit.list)
   const spinner = useSelector((state) => state.visit.isLoading)
+  const [currentPage, setCurrentPage] = useState(0) //numero pagina corrente
   const dispatch = useDispatch()
   const [show, setShow] = useState(false)
   const [selected, setSelected] = useState(null)
@@ -17,9 +18,12 @@ const Reservation = () => {
     console.log(id)
   }
   useEffect(() => {
-    dispatch(getVisit())
-  }, [dispatch])
+    dispatch(getVisit(currentPage)) // passa il numero pagina corrente
+  }, [dispatch, currentPage]) // aggiorna la fetch quando currentPage cambia
 
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber) // aggiorna numero pagina corrente
+  }
   return (
     <Container className="h-100">
       <Row className="my-3">
@@ -34,8 +38,8 @@ const Reservation = () => {
           </Col>
         )}
       </Row>
-      {visitData &&
-        visitData.map((visit) => (
+      {visitData.content &&
+        visitData.content.map((visit) => (
           <Row
             key={visit.id}
             sm={12}
@@ -65,6 +69,20 @@ const Reservation = () => {
             </Col>
           </Row>
         ))}
+      {visitData && (
+        <Pagination className="justify-content-center custom-page">
+          {[...Array(visitData.totalPages).keys()].map((number) => (
+            <Pagination.Item
+              key={number}
+              active={number === currentPage - 1}
+              onClick={() => handlePageChange(number)}
+              className="custom-item"
+            >
+              {number + 1}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+      )}
       {show && selected && (
         <ReservationModal visitId={selected} setShow={setShow} />
       )}

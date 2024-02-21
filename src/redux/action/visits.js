@@ -3,16 +3,17 @@ export const POST_VISIT = 'POST_VISIT'
 export const PUT_VISIT = 'PUT_VISIT'
 export const DELETE_VISIT = 'DELETE_VISIT'
 
-export const getVisit = () => {
+export const getVisit = (page) => {
   return async (dispatch) => {
     try {
-      const res = await fetch('http://localhost:3001/visits/getall')
+      const res = await fetch(
+        `http://localhost:3001/visits/getall?page=${page}`
+      )
       if (res.ok) {
         const data = await res.json()
-        console.log(data.content)
         dispatch({
           type: GET_VISIT,
-          payload: data.content,
+          payload: data,
         })
         console.log('List of visits has been loud correctly! ')
       } else {
