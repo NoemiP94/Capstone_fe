@@ -17,8 +17,6 @@ const Blog = () => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber) // aggiorna numero pagina corrente
-    console.log('Page changed to:', pageNumber)
-    // dispatch(getBlogpost(pageNumber))
   }
 
   return (
@@ -65,12 +63,13 @@ const Blog = () => {
           ))}
       </Row>
       {blogData && (
-        <Pagination>
+        <Pagination className="justify-content-center custom-page">
           {[...Array(blogData.totalPages).keys()].map((number) => (
             <Pagination.Item
               key={number}
               active={number === currentPage - 1}
               onClick={() => handlePageChange(number)}
+              className="custom-item"
             >
               {number + 1}
             </Pagination.Item>
