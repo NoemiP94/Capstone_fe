@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { Button, Col, Container, Form, Pagination, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUsers, postRegister } from '../redux/action'
 import { Link } from 'react-router-dom'
@@ -15,9 +15,14 @@ const HandleUser = () => {
   const token = localStorage.getItem('token')
   const userData = useSelector((state) => state.login.list)
   const spinner = useSelector((state) => state.login.isLoading)
+  const [currentPage, setCurrentPage] = useState(0)
   useEffect(() => {
-    dispatch(getUsers(token))
-  }, [dispatch])
+    dispatch(getUsers(token, currentPage))
+  }, [dispatch, currentPage])
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
 
   return (
     <Container className="my-4 h-100">
@@ -98,8 +103,8 @@ const HandleUser = () => {
         </Col>
       )}
       <Row className="my-4 flex-column">
-        {userData &&
-          userData.map((user, index) => {
+        {userData.content &&
+          userData.content.map((user, index) => {
             return (
               <div key={index} className="glass my-2 w-50 p-2">
                 <Col>Nome: {user.name}</Col>
@@ -109,6 +114,20 @@ const HandleUser = () => {
             )
           })}
       </Row>
+      {userData && (
+        <Pagination className="justify-content-center custom-page">
+          {[...Array(userData.totalPages).keys()].map((number) => (
+            <Pagination.Item
+              key={number}
+              active={number === currentPage - 1}
+              onClick={() => handlePageChange(number)}
+              className="custom-item"
+            >
+              {number + 1}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+      )}
       <Row>
         <Link to="/admin">
           <Button>Indietro</Button>

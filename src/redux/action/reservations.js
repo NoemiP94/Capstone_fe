@@ -33,21 +33,23 @@ export const postReservation = (reservation) => {
   }
 }
 
-export const getReservation = (token) => {
+export const getReservation = (token, page) => {
   return async (dispatch) => {
     try {
-      const res = await fetch('http://localhost:3001/reservations/getall', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      const res = await fetch(
+        `http://localhost:3001/reservations/getall?page=${page}`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       if (res.ok) {
         const data = await res.json()
-        console.log(data.content)
         dispatch({
           type: GET_RESERVATION,
-          payload: data.content,
+          payload: data,
         })
         console.log('List of reservations has been loud correctly!')
       } else {

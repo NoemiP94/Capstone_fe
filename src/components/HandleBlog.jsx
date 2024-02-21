@@ -1,5 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  Pagination,
+  Row,
+} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   GET_POST_IMAGE,
@@ -22,13 +30,19 @@ const HandleBlog = () => {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
   const blogData = useSelector((state) => state.blogpost.list)
+  const [currentPage, setCurrentPage] = useState(0)
+
   useEffect(() => {
-    dispatch(getBlogpost())
-  }, [dispatch])
+    dispatch(getBlogpost(currentPage))
+  }, [dispatch, currentPage])
   const [formImg, setFormImg] = useState(null)
   const [updatedBlogpost, setUpdatedBlogpost] = useState(null)
   const [idBlogpost, setIdBlogpost] = useState('')
   const spinner = useSelector((state) => state.blogpost.isLoading)
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
 
   const handleUploadImage = async (blogId) => {
     try {
@@ -158,8 +172,8 @@ const HandleBlog = () => {
             <div className="colorful"></div>
           </Col>
         )}
-        {blogData &&
-          blogData.map((blog) => (
+        {blogData.content &&
+          blogData.content.map((blog) => (
             <Col key={blog.id} sm={12} md={5} lg={3} className="mb-3 w-100">
               <Row className="glass d-flex w-100 flex-column flex-md-row justify-content-md-between pe-4">
                 <Col
@@ -217,6 +231,20 @@ const HandleBlog = () => {
             </Col>
           ))}
       </Row>
+      {blogData && (
+        <Pagination className="justify-content-center custom-page">
+          {[...Array(blogData.totalPages).keys()].map((number) => (
+            <Pagination.Item
+              key={number}
+              active={number === currentPage - 1}
+              onClick={() => handlePageChange(number)}
+              className="custom-item"
+            >
+              {number + 1}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+      )}
       <Row className="my-4">
         <Button style={{ width: '100px' }} className="ms-2">
           <Link to="/admin" className="text-light text-decoration-none">

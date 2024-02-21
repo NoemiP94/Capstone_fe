@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { useEffect, useState } from 'react'
+import { Button, Col, Container, Pagination, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteReservation, getReservation } from '../redux/action/reservations'
 import { format } from 'date-fns'
@@ -9,12 +9,13 @@ import { Trash3Fill } from 'react-bootstrap-icons'
 const HandleReservation = () => {
   const reservationData = useSelector((state) => state.reservation.list)
   const token = localStorage.getItem('token')
+  const [currentPage, setCurrentPage] = useState(0)
   const dispatch = useDispatch()
   const spinner = useSelector((state) => state.reservation.isLoading)
 
   useEffect(() => {
-    dispatch(getReservation(token))
-  }, [dispatch])
+    dispatch(getReservation(token, currentPage))
+  }, [dispatch, currentPage])
 
   const handleDelete = async (reservation) => {
     try {
@@ -25,6 +26,11 @@ const HandleReservation = () => {
       console.log('Error', error)
     }
   }
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
   return (
     <Container className="vh-100">
       <Row className="my-3">
@@ -35,8 +41,8 @@ const HandleReservation = () => {
           </Col>
         )}
       </Row>
-      {reservationData &&
-        reservationData.map((reservation) => {
+      {reservationData.content &&
+        reservationData.content.map((reservation) => {
           const visitDate = reservation.visit_id
             ? reservation.visit_id.date
             : null
@@ -80,6 +86,20 @@ const HandleReservation = () => {
             </Row>
           )
         })}
+      {reservationData && (
+        <Pagination className="justify-content-center custom-page">
+          {[...Array(reservationData.totalPages).keys()].map((number) => (
+            <Pagination.Item
+              key={number}
+              active={number === currentPage - 1}
+              onClick={() => handlePageChange(number)}
+              className="custom-item"
+            >
+              {number + 1}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+      )}
       <Row className="my-4">
         <Button style={{ width: '100px' }} className="ms-2">
           <Link to="/admin" className="text-light text-decoration-none">

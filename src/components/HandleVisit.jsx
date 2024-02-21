@@ -1,5 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Button, Col, Container, Form, FormControl, Row } from 'react-bootstrap'
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  FormControl,
+  Pagination,
+  Row,
+} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
@@ -21,9 +29,15 @@ const HandleVisit = () => {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
   const visitData = useSelector((state) => state.visit.list)
+  const [currentPage, setCurrentPage] = useState(0)
   useEffect(() => {
-    dispatch(getVisit())
-  }, [dispatch])
+    dispatch(getVisit(currentPage))
+  }, [dispatch, currentPage])
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
   const spinner = useSelector((state) => state.visit.isLoading)
 
   const handleDate = (e) => {
@@ -152,8 +166,8 @@ const HandleVisit = () => {
             <div className="colorful"></div>
           </Col>
         )}
-        {visitData &&
-          visitData.map((visit) => (
+        {visitData.content &&
+          visitData.content.map((visit) => (
             <Col
               key={visit.id}
               sm={12}
@@ -189,6 +203,20 @@ const HandleVisit = () => {
             </Col>
           ))}
       </Row>
+      {visitData && (
+        <Pagination className="justify-content-center custom-page">
+          {[...Array(visitData.totalPages).keys()].map((number) => (
+            <Pagination.Item
+              key={number}
+              active={number === currentPage - 1}
+              onClick={() => handlePageChange(number)}
+              className="custom-item"
+            >
+              {number + 1}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+      )}
       <Row className="my-4">
         <Button style={{ width: '100px' }} className="ms-2">
           <Link to="/admin" className="text-light text-decoration-none">

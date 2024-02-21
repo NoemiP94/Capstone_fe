@@ -65,20 +65,19 @@ export const postRegister = (register) => {
   }
 }
 
-export const getUsers = (token) => {
+export const getUsers = (token, page) => {
   return async (dispatch) => {
     try {
-      const res = await fetch('http://localhost:3001/users', {
+      const res = await fetch(`http://localhost:3001/users?page=${page}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       if (res.ok) {
         const data = await res.json()
-        console.log(data.content)
         dispatch({
           type: GET_USERS,
-          payload: data.content,
+          payload: data,
         })
       } else {
         throw new Error('List of users is fail!')
