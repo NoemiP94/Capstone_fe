@@ -10,16 +10,18 @@ export const getImage = (image) => ({
   payload: image,
 })
 
-export const getBlogpost = () => {
+export const getBlogpost = (page) => {
   return async (dispatch) => {
     try {
-      const res = await fetch('http://localhost:3001/blogposts/getall')
+      const res = await fetch(
+        `http://localhost:3001/blogposts/getall?page=${page}`
+      )
       if (res.ok) {
         const data = await res.json()
-        console.log(data.content)
+        console.log(data)
         dispatch({
           type: GET_BLOGPOST,
-          payload: data.content,
+          payload: data,
         })
         console.log('List of blogposts has been load correctly!')
       } else {

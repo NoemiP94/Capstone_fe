@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button, Card, Col, Container, Row } from 'react-bootstrap'
+import { Button, Card, Col, Container, Pagination, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlogpost } from '../redux/action/blogs'
 import { Link } from 'react-router-dom'
@@ -7,10 +7,19 @@ import { Link } from 'react-router-dom'
 const Blog = () => {
   const blogData = useSelector((state) => state.blogpost.list)
   const spinner = useSelector((state) => state.blogpost.isLoading)
+  const [currentPage, setCurrentPage] = useState(0) //numero pagina corrente
   const dispatch = useDispatch()
+
   useEffect(() => {
-    dispatch(getBlogpost())
-  }, [dispatch])
+    console.log('current page:', currentPage)
+    dispatch(getBlogpost(currentPage)) // passa il numero pagina corrente
+  }, [dispatch, currentPage]) // aggiorna la fetch quando currentPage cambia
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber) // aggiorna numero pagina corrente
+    console.log('Page changed to:', pageNumber)
+    // dispatch(getBlogpost(pageNumber))
+  }
 
   return (
     <Container bg="bg-black" className="my-3 mx-auto w-100 h-100 ">
@@ -21,8 +30,8 @@ const Blog = () => {
             <div className="colorful"></div>
           </Col>
         )}
-        {blogData &&
-          blogData.map((blog) => (
+        {blogData.content &&
+          blogData.content.map((blog) => (
             <Col key={blog.id} className="mb-2 w-100">
               <Row className="glass d-flex w-100 flex-column flex-md-row justify-content-md-between pe-4">
                 <Col
@@ -55,6 +64,19 @@ const Blog = () => {
             </Col>
           ))}
       </Row>
+      {blogData && (
+        <Pagination>
+          {[...Array(blogData.totalPages).keys()].map((number) => (
+            <Pagination.Item
+              key={number}
+              active={number === currentPage - 1}
+              onClick={() => handlePageChange(number)}
+            >
+              {number + 1}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+      )}
     </Container>
   )
 }
