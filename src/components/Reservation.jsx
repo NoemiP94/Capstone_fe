@@ -46,7 +46,7 @@ const Reservation = () => {
             md={5}
             lg={3}
             className="border rounded glass my-3 p-2 flex-nowrap justify-content-md-between
-            align-items-lg-center flex-column flex-md-row w-100 mx-auto"
+            align-items-lg-center flex-column flex-sm-row w-100 mx-auto"
           >
             <Col sm={3} lg={3}>
               Descrizione: {visit.description}

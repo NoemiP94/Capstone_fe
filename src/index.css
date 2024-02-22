@@ -38,6 +38,17 @@ button:hover{
   cursor: pointer!important;
 }
 
+.toggle:hover {
+  background-color: transparent !important;
+  border-color:transparent !important;
+  background-image: none !important;
+  box-shadow: none !important
+}
+
+.toggle span {
+ border: none !important; 
+}
+
 a {
   color:#B5964D !important;
 }
@@ -325,3 +336,4 @@ SPINNER
   background-color: #B5964D !important;
 box-shadow: inset 2px 2px 10px 0px #FFFFFF !important
 }
+

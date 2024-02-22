@@ -101,7 +101,7 @@ const Info = () => {
             </div>
             <div className="ms-4 mt-3">
               <p>Fluminimaggiore </p>
-              <p>SS 126 km</p>
+              <p>SS 126 km 60.800</p>
               <p>Lat: 39.423636 - Lng: 8.500326</p>
             </div>
           </div>
