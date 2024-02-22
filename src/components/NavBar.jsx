@@ -7,6 +7,7 @@ const NavBar = () => {
   const [isLogged, setIsLogged] = useState(false)
   const [role, setRole] = useState('')
   const location = useLocation()
+  const [expanded, setExpanded] = useState(false)
 
   useEffect(() => {
     const logged = localStorage.getItem('isLogged') === 'true'
@@ -16,6 +17,10 @@ const NavBar = () => {
     setRole(roleFromLS)
     console.log('role:', roleFromLS)
   }, [])
+
+  const handleToggle = () => {
+    setExpanded(!expanded)
+  }
 
   return (
     <Navbar
@@ -30,9 +35,15 @@ const NavBar = () => {
             src={logo}
             className="rounded-circle mx-3"
             style={{ width: '40px' }}
+            alt="logo"
           />
         </Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" className="toggle" />
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          className="toggle"
+          aria-expanded={expanded ? 'true' : 'false'}
+          onClick={handleToggle}
+        />
         <Navbar.Collapse id="basic-navbar-nav ">
           <Nav className="me-auto">
             <Nav.Link>

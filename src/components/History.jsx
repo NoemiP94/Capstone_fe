@@ -12,7 +12,7 @@ const History = () => {
         <Col>
           <Row className="flex-column my-3">
             <Col className="d-flex justify-content-center my-3">
-              <Image src={old} className="w-50 image-border" />
+              <Image src={old} className="w-50 image-border" alt="old-photo" />
             </Col>
             <Col className="text-center mt-3">
               <p>
@@ -37,7 +37,7 @@ const History = () => {
         <Col>
           <Row className="flex-column my-3">
             <Col className="d-flex justify-content-center my-3">
-              <Image src={houses} className="w-50 image-border" />
+              <Image src={houses} className="w-50 image-border" alt="houses" />
             </Col>
             <Col className="text-center mt-3">
               <p>
@@ -62,7 +62,11 @@ const History = () => {
         <Col>
           <Row className="flex-column my-3">
             <Col className="d-flex justify-content-center my-3">
-              <Image src={mineral} className="w-50 image-border" />
+              <Image
+                src={mineral}
+                className="w-50 image-border"
+                alt="minerals"
+              />
             </Col>
             <Col className="text-center mt-3">
               <p>
@@ -86,7 +90,7 @@ const History = () => {
       <Row className="my-5 flex-sm-column text-center flex-xl-row">
         <h2 className="mb-4">L'Associazione</h2>
         <Col>
-          <Image src={logo} className="w-75 mt-4" />
+          <Image src={logo} className="w-75 mt-4" alt="logo" />
         </Col>
         <Col>
           <p>

@@ -199,6 +199,7 @@ const HandleBlog = () => {
                     variant="top"
                     src={blog.image}
                     style={{ width: '300px' }}
+                    alt="image"
                   />
                 </Col>
                 <Col sm={12} lg={6} xl={9} className="ps-5">

@@ -16,7 +16,7 @@ const Info = () => {
             <h4>I nostri social e contatti</h4>
             <Col className="d-flex align-items-center">
               <div>
-                <Image src={instagram} className="w-75" />
+                <Image src={instagram} className="w-75" alt="instagram" />
               </div>
               <div className="pt-3">
                 <Link
@@ -29,7 +29,7 @@ const Info = () => {
             </Col>
             <Col className="d-flex align-items-center">
               <div>
-                <Image src={facebook} className="w-75" />
+                <Image src={facebook} className="w-75" alt="facebook" />
               </div>
               <div className="pt-3">
                 <Link
@@ -42,7 +42,7 @@ const Info = () => {
             </Col>
             <Col className="d-flex align-items-center">
               <div>
-                <Image src={tripadvisor} className="w-75" />
+                <Image src={tripadvisor} className="w-75" alt="tripadvisor" />
               </div>
               <div className="pt-3">
                 <Link
@@ -55,7 +55,7 @@ const Info = () => {
             </Col>
             <Col className="d-flex align-items-center">
               <div>
-                <Image src={whatsapp} className="w-75" />
+                <Image src={whatsapp} className="w-75" alt="whatsapp" />
               </div>
               <div className="pt-3">
                 <p>+39 340 00 01 995</p>
@@ -63,7 +63,7 @@ const Info = () => {
             </Col>
             <Col className="d-flex align-items-center">
               <div>
-                <Image src={mail} className="w-75" />
+                <Image src={mail} className="w-75" alt="mail" />
               </div>
               <div className="pt-3">
                 <p>info@minierasuzurfuru.it</p>
@@ -97,6 +97,7 @@ const Info = () => {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                title="map"
               ></iframe>
             </div>
             <div className="ms-4 mt-3">

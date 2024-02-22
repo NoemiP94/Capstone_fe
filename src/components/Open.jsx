@@ -9,6 +9,7 @@ const Open = () => {
           src={logo}
           style={{ height: '500px', width: '450px' }}
           className="fade-in"
+          alt="logo"
         />
       </Row>
       <Row className="flex-column text-center">

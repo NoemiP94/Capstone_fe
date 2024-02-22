@@ -37,7 +37,12 @@ button:hover{
   border-radius: 14px!important;
   cursor: pointer!important;
 }
-
+ .toggle{
+  background-color: transparent !important;
+  border-color:transparent !important;
+  background-image: none !important;
+  box-shadow: none !important
+ }
 .toggle:hover {
   background-color: transparent !important;
   border-color:transparent !important;
