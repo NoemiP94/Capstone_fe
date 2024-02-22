@@ -111,7 +111,7 @@ const HandleUser = () => {
           <div className="colorful"></div>
         </Col>
       )}
-      <Row className="my-4 flex-column">
+      <Row className="my-4 flex-column ms-2">
         {userData.content &&
           userData.content.map((user, index) => {
             return (

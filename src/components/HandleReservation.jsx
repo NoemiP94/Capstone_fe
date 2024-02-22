@@ -53,7 +53,7 @@ const HandleReservation = () => {
               md={5}
               lg={3}
               className="border rounded glass my-3 p-2 flex-nowrap justify-content-md-between
-          align-items-lg-center"
+          align-items-lg-center flex-column flex-md-row mx-2"
             >
               <Col sm={3} lg={3}>
                 Nome: {reservation.name}

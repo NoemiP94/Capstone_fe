@@ -178,7 +178,7 @@ const HandleBlog = () => {
           </Form>
         </Col>
       </Row>
-      <Row className="mt-4">
+      <Row className="mt-4 ms-2">
         <h4 className="mb-3">Lista degli articoli:</h4>
         {spinner && (
           <Col className="d-flex justify-content-center my-5">

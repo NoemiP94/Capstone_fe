@@ -29,12 +29,12 @@ const AreaAdmin = () => {
           <p>Scegli una sezione:</p>
           <Col className="my-3">
             <Link to="/handleblog" className="text-light text-decoration-none">
-              <Button className="w-25">Blog</Button>
+              <Button className="w-50">Blog</Button>
             </Link>
           </Col>
           <Col className="my-3">
             <Link to="/handlevisit" className="text-light text-decoration-none">
-              <Button className="w-25">Visite</Button>
+              <Button className="w-50">Visite</Button>
             </Link>
           </Col>
           <Col className="my-3">
@@ -42,19 +42,19 @@ const AreaAdmin = () => {
               to="/handlereservation"
               className="text-light text-decoration-none"
             >
-              <Button className="w-25">Prenotazioni</Button>
+              <Button className="w-50">Prenotazioni</Button>
             </Link>
           </Col>
           <Col className="my-3">
             <Link to="/user" className="text-light text-decoration-none">
-              <Button className="w-25">Utenti</Button>
+              <Button className="w-50">Utenti</Button>
             </Link>
           </Col>
         </Row>
         <Row>
           <Button
             onClick={handleLogout}
-            className="my-2"
+            className="my-2 ms-2"
             style={{ width: '150px' }}
           >
             Log out

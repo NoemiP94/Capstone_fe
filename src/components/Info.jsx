@@ -87,16 +87,23 @@ const Info = () => {
           <div className="mb-4">
             <h4>Come trovarci</h4>
           </div>
-          <div>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3082.0357906541317!2d8.498716376364625!3d39.42331511550129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e775e1e2422cd9%3A0x7292d517c12c325c!2sMiniera%20di%20Su%20Zurfuru!5e0!3m2!1sit!2sit!4v1707917922086!5m2!1sit!2sit"
-              width="550"
-              height="450"
-              style={{ border: '0' }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <div className="d-flex flex-column flex-md-row align-items-center">
+            <div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3082.0357906541317!2d8.498716376364625!3d39.42331511550129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e775e1e2422cd9%3A0x7292d517c12c325c!2sMiniera%20di%20Su%20Zurfuru!5e0!3m2!1sit!2sit!4v1707917922086!5m2!1sit!2sit"
+                width="320vw"
+                height="450"
+                style={{ border: '0' }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div className="ms-4 mt-3">
+              <p>Fluminimaggiore </p>
+              <p>SS 126 km</p>
+              <p>Lat: 39.423636 - Lng: 8.500326</p>
+            </div>
           </div>
         </Col>
         <Col className="my-4">

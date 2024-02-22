@@ -83,7 +83,8 @@ h1{
 }
 
 .custom-title{
-  font-size: 6em !important;
+  font-size: 6vh !important;
+text-shadow: -4px -4px 4px black!important;
 }
 
 
@@ -109,7 +110,7 @@ h1{
   height: auto;
   padding: 10px 50px;
   position: absolute;
-  top: 10%;
+  bottom: -10px;
   z-index: 2;
   
   
@@ -160,7 +161,7 @@ h1{
     margin-left: auto; 
 }
  .carousel-image {
-  height:800px;
+  height: 80vh;
   object-fit: cover;
  }
 

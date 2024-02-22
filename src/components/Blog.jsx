@@ -22,7 +22,7 @@ const Blog = () => {
   return (
     <Container bg="bg-black" className="my-3 mx-auto w-100 h-100 ">
       <h1>Su Zurfuru blog</h1>
-      <Row className="g-4 mt-3 ">
+      <Row className="g-4 mt-3 mx-3">
         {spinner && (
           <Col className="d-flex justify-content-center my-5">
             <div className="colorful"></div>
