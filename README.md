@@ -43,3 +43,4 @@ npm run dev
 ## 🖊️ Author
 
 Noemi Pusceddu 🦋
+🧑‍💻 [LinkedIn](https://www.linkedin.com/in/noemi-pusceddu-developer/)
