@@ -26,6 +26,7 @@ This project was developed using **React v.18.2.0** and **Vite v.5.0.8**
    - To use this project, it's necessary have a Cloudinary account
    - Run the project
      -- To view API documentation, import the `api_doc.yaml` file into Postman --
+    ❗DISCLAIMER: it's necessary create an admin account: you can create in the right table of your database or using the /register endpoint in Postman❗
 3. Open frontend project and open a terminal:
 
 Run:
